@@ -1,12 +1,12 @@
 # Build
-FROM node:14-alpine as build-step
-RUN mkdir /app
+FROM node:14-alpine
 WORKDIR /app
-COPY package.json /app
-RUN npm install
-COPY . /app
-RUN npm run build
+ENV PATH /app/node_modules/.bin:$PATH
 
-# Install
-FROM nginx:1.19.6-alpine
-COPY --from=build-step /app/build /usr/share/nginx/html
+COPY package.json .
+COPY package-lock.json .
+RUN npm install --silent
+RUN npm install react-scripts@4.0.1 -g --silent
+COPY . .
+
+CMD ["npm", "start"]

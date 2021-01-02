@@ -13,9 +13,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start-image": "docker-compose up -d --build",
     "build": "react-scripts build",
-    "build-image": "docker-compose build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
