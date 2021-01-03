@@ -6,6 +6,10 @@ import { SHolidayApi } from '../../api/SHoliday/SHolidayApi';
 import { Flag } from 'react-feather'
 
 export const Clock: React.FunctionComponent = () => {
+    const dateFormat = "Do MMMM YYYY";
+    const timeFormat = "HH:mm";
+
+    const api = new SHolidayApi();
     
     const [date, setDate] = React.useState<string>("...");
     const [time, setTime] = React.useState<string>("...");
@@ -13,10 +17,16 @@ export const Clock: React.FunctionComponent = () => {
     const [isRedDay, setIsRedDay] = React.useState<boolean>(false);
     const [nameDays, setNameDays] = React.useState<string[]>([]);
 
-    React.useEffect(() => {
-        let api = new SHolidayApi();
+    function updateTime() {
+        setTime(moment().format(timeFormat));
 
-        moment.locale('sv');
+        if (moment().format(dateFormat) !== date) {
+            updateDate();
+        }
+    }
+
+    function updateDate() {
+        setDate(moment().format(dateFormat));
 
         api.days(moment(),
         (response: IDaysResponse) => {
@@ -28,11 +38,16 @@ export const Clock: React.FunctionComponent = () => {
         (message: string) => {
             console.log(message);
         });
+    }
+
+    React.useEffect(() => {
+        moment.locale('sv');
+
+        updateTime();
+        updateDate();
 
         setInterval(() => {
-            let timestamp = moment();
-            setDate(timestamp.format("Do MMMM YYYY"));
-            setTime(timestamp.format("HH:mm"));
+            updateTime();
         }, 1000);
     }, []);
 
