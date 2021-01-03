@@ -13,6 +13,17 @@ export default class App extends React.Component {
             <Clock />
           </div>
         </div>
+        <div className="row">
+          <div className="col-4">
+
+          </div>
+          <div className="col-4">
+            
+          </div>
+          <div className="col-4">
+            
+          </div>
+        </div>
       </div>
     );
   }
