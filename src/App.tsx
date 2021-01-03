@@ -16,7 +16,7 @@ export default class App extends React.Component {
         </div>
         <div className="row">
           <div className="col-4">
-            <WeatherSummary name="Ursvik" lon={0} lat={0} msl={0}/>
+            <WeatherSummary name="Stora Ursvik" lon={0} lat={0} msl={0}/>
           </div>
           <div className="col-4">
             <WeatherSummary name="Visby" lon={0} lat={0} msl={0}/>

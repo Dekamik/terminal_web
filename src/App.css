@@ -4,6 +4,11 @@
   font-family: Roboto Slab;
   font-size: calc(10px + 2vmin);
   min-height: 100vh;
+  overflow: hidden;
+}
+
+.discreet {
+  color: #888;
 }
 
 .app-link {
@@ -15,34 +20,46 @@
   text-align: center;
   padding-top: 2rem;
   padding-bottom: 2rem;
-  font-size: 3rem;
+  font-size: 4rem;
 }
 
-.weather {
+.weather-summary > .header {
+  font-size: 2.25rem;
+}
+
+.weather-summary > .temperature {
   font-family: Audiowide;
   text-align: center;
 }
 
-.weather.hot {
+.weather-summary > .temperature.hot {
   color: #ff6edd;
 }
 
-.weather.cold {
+.weather-summary > .temperature.cold {
   color: #61dafb;
 }
 
 .clock {
-  
+  text-align: center;
+  font-size: 1rem;
 }
 
 .clock-date {
-  text-align: center;
   font-family: Goldman;
+  font-size: 1.75rem;
+}
+
+.clock-date.red {
+  color: #ff6edd;
 }
 
 .clock-time {
-  text-align: center;
   font-family: Major Mono Display;
   line-height: 0.7;
   font-size: calc(50px + 2vmin);
+}
+
+.clock-names {
+  padding-top: 0.7rem;
 }
