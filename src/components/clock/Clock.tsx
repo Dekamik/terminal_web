@@ -8,8 +8,7 @@ import { Flag } from 'react-feather'
 export const Clock: React.FunctionComponent = () => {
     const dateFormat = "Do MMMM YYYY";
     const timeFormat = "HH:mm";
-
-    const api = new SHolidayApi();
+    const locale = process.env.REACT_APP_LOCALE;
     
     const [date, setDate] = React.useState<string>("...");
     const [time, setTime] = React.useState<string>("...");
@@ -17,18 +16,15 @@ export const Clock: React.FunctionComponent = () => {
     const [isRedDay, setIsRedDay] = React.useState<boolean>(false);
     const [nameDays, setNameDays] = React.useState<string[]>([]);
 
-    function updateTime() {
-        setTime(moment().format(timeFormat));
+    const api = React.useMemo(() => {
+        return new SHolidayApi();
+    }, []);
 
-        if (moment().format(dateFormat) !== date) {
-            updateDate();
-        }
-    }
+    const updateDate = React.useCallback(() => {
+        let currentTime = moment();
+        setDate(currentTime.format(dateFormat));
 
-    function updateDate() {
-        setDate(moment().format(dateFormat));
-
-        api.days(moment(),
+        api.days(currentTime,
         (response: IDaysResponse) => {
             let day = response.dagar[0];
             setFlagDay(day.flaggdag);
@@ -38,10 +34,19 @@ export const Clock: React.FunctionComponent = () => {
         (message: string) => {
             console.log(message);
         });
-    }
+    }, [api]);
+
+    const updateTime = React.useCallback(() => {
+        let currentTime = moment();
+        setTime(currentTime.format(timeFormat));
+
+        if (currentTime.format(dateFormat) !== date) {
+            updateDate();
+        }
+    }, [date, updateDate]);
 
     React.useEffect(() => {
-        moment.locale('sv');
+        moment.locale(locale);
 
         updateTime();
         updateDate();
@@ -49,7 +54,7 @@ export const Clock: React.FunctionComponent = () => {
         setInterval(() => {
             updateTime();
         }, 1000);
-    }, []);
+    }, [locale, updateDate, updateTime]);
 
     return (
         <div className="clock">
