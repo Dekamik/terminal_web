@@ -4,6 +4,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import "@fontsource/goldman";
+import "@fontsource/major-mono-display";
+import "@fontsource/poiret-one";
+import "typeface-audiowide";
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
