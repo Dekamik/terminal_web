@@ -10,6 +10,27 @@
   color: #61dafb;
 }
 
+.weather-summary {
+  line-height: 3rem;
+  text-align: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  font-size: 3rem;
+}
+
+.weather {
+  font-family: Audiowide;
+  text-align: center;
+}
+
+.weather.hot {
+  color: #ff6edd;
+}
+
+.weather.cold {
+  color: #61dafb;
+}
+
 .clock {
   
 }
