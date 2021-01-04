@@ -1,5 +1,5 @@
 .app {
-  background-color: #282c34;
+  /*background-color: #282c34;*/
   color: white;
   font-family: Roboto Slab;
   min-height: 100vh;
@@ -45,12 +45,20 @@
   text-align: center;
 }
 
-.magenta {
+.text-magenta {
   color: #ff6edd;
 }
 
-.blue {
+.bg-magenta {
+  background-color: #ff6edd;
+}
+
+.text-blue {
   color: #61dafb;
+}
+
+.bg-blue {
+  background-color: #61dafb;
 }
 
 .clock {
@@ -81,7 +89,7 @@
 
 .sl-next-departures > .table {
   font-size: 1.4rem;
-  background-color: #282c34;
+  /*background-color: #282c34;*/
 }
 
 .td {

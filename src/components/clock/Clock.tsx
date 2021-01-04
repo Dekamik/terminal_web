@@ -66,7 +66,7 @@ export const Clock: React.FunctionComponent = () => {
     return (
         <div className="clock">
             <div className="row">
-                <div className={"col-12 clock-date" + (isRedDay ? " magenta" : "")}>{date}</div>
+                <div className={"col-12 clock-date" + (isRedDay ? " text-magenta" : "")}>{date}</div>
             </div>
             <div className="row">
                 <div className="col-12 clock-time">{time}</div>

@@ -9,13 +9,17 @@ import { SLNextDepartures } from './components/public-transport/SLNextDepartures
 export default class App extends React.Component {
   render() {
     return (
-      <div className="app">
+      <div className="app bg-dark">
         <div className="row">
           <div className="col-4">
             <Clock />
           </div>
         </div>
-        <WeatherSummaries />
+        <div className="row">
+          <div className="col-12">
+            <WeatherSummaries />
+          </div>
+        </div>
         <div className="row">
           <div className="col-6">
             <SLNextDepartures stopName="Ursviks Holme" />

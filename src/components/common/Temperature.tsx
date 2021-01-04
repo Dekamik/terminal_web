@@ -14,7 +14,7 @@ export enum TemperatureUnit {
 
 export const Temperature: React.FunctionComponent<ITemperature> = (props) => {
     return (
-        <div className={"temperature " + (props.temperature != null ? (props.temperature >= (props.hotTemperatureLimit || 10) ? "magenta" : "blue") : "text-warning")}>
+        <div className={"temperature " + (props.temperature != null ? (props.temperature >= (props.hotTemperatureLimit || 10) ? "text-magenta" : "text-blue") : "text-warning")}>
             {
                 props.temperature != null
                     ? `${props.temperature > 0 ? "+" : ""}${props.temperature}°${props.unit || TemperatureUnit.Celsius}`

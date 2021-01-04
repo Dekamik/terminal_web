@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { LineColor, SLDeparture } from './SLDeparture';
+import { DisruptionSeverity, SLDepartureDisruptions } from './SLDepartureDisruptions';
 import { SLMode } from './SLModes';
 
 interface ISLNextDepartures {
@@ -17,6 +18,8 @@ export const SLNextDepartures: React.FunctionComponent<ISLNextDepartures> = (pro
                     <SLDeparture mode={SLMode.Bus} line="504" endStation="Rissne" departsAt="7 min" color={LineColor.Red}/>
                     <SLDeparture mode={SLMode.Bus} line="504" endStation="Sundbybergs station" departsAt="15 min" color={LineColor.Red}/>
                     <SLDeparture mode={SLMode.Bus} line="504" endStation="Rissne" departsAt="22 min" color={LineColor.Red}/>
+                    <SLDeparture mode={SLMode.Bus} line="504" endStation="Sundbybergs station" departsAt="29 min" color={LineColor.Red}/>
+                    <SLDepartureDisruptions disruptionsCount={0} highestSeverity={DisruptionSeverity.None} />
                 </tbody>
             </table>
         </div>

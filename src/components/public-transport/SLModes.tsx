@@ -2,11 +2,11 @@ import { faBus, faSubway, faTrain, faShip, faExclamationTriangle } from "@fortaw
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export enum SLMode {
-    Bus = 0,
-    Subway = 1,
-    CommuterTrain = 2,
-    Tram = 3,
-    Boat = 4
+    Bus,
+    Subway,
+    CommuterTrain,
+    Tram,
+    Boat
 }
 
 export function getModeIcon(mode: SLMode) {
