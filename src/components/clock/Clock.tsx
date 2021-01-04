@@ -3,7 +3,8 @@ import 'moment/locale/sv'
 import * as React from 'react';
 import { IDaysResponse } from '../../api/SHoliday/IDaysResponse';
 import { SHolidayApi } from '../../api/SHoliday/SHolidayApi';
-import { Flag } from 'react-feather'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFlag } from '@fortawesome/free-solid-svg-icons';
 
 export const Clock: React.FunctionComponent = () => {
     const dateFormat = "Do MMMM YYYY";
@@ -70,7 +71,7 @@ export const Clock: React.FunctionComponent = () => {
             {
                 flagDay.length > 0
                     ? <div className="row">
-                        <div className="col-12 clock-flagday">{flagDay} {<Flag/>}</div>
+                        <div className="col-12 clock-flagday">{<FontAwesomeIcon icon={faFlag} />} {flagDay}</div>
                     </div>
                     : null
             }

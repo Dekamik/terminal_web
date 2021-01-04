@@ -13,7 +13,7 @@ export const WeatherSummary: React.FunctionComponent<IWeatherSummary> = (props) 
             <div className="header">{props.name}</div>
             <Temperature temperature={props.temperature} />
             <div className="weather-icon">
-                <img className="filter-white" src={"/images/weathericons/" + props.weatherCode + ".svg"} />
+                <img className="filter-white" src={"/images/weathericons/" + props.weatherCode + ".svg"} alt={props.weatherCode} />
             </div>
         </div>
     );
