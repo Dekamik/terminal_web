@@ -69,18 +69,17 @@ export const Clock: React.FunctionComponent = () => {
                 <div className={"col-12 clock-date" + (isRedDay ? " text-magenta" : "")}>{date}</div>
             </div>
             <div className="row">
-                <div className="col-12 clock-time">{time}</div>
+                <div className="col-12">
+                    <div className="clock-time">{time}</div>
+                </div>
             </div>
             <div className="row">
-                <div className="col-12 clock-names discreet">{nameDays.join(" ")}</div>
-            </div>
-            {
-                flagDay.length > 0
-                    ? <div className="row">
-                        <div className="col-12 clock-flagday">{<FontAwesomeIcon icon={faFlag} />} {flagDay}</div>
+                <div className="col-12">
+                    <div className="clock-names discreet">
+                        {nameDays.join(" ")} {flagDay ? <FontAwesomeIcon icon={faFlag} /> : null}
                     </div>
-                    : null
-            }
+                </div>
+            </div>
         </div>
     );
 }
