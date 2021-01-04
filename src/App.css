@@ -46,11 +46,11 @@
   text-align: center;
 }
 
-.temperature.hot {
+.magenta {
   color: #ff6edd;
 }
 
-.temperature.cold {
+.blue {
   color: #61dafb;
 }
 
@@ -62,10 +62,6 @@
 .clock-date {
   font-family: Goldman;
   font-size: 1.75rem;
-}
-
-.clock-date.red {
-  color: #ff6edd;
 }
 
 .clock-time {
