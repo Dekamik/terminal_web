@@ -7,8 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
 
 export const Clock: React.FunctionComponent = () => {
-    const dateFormat = "Do MMMM YYYY";
-    const timeFormat = "HH:mm";
+    const dateFormat = process.env.REACT_APP_DATE_TEXT_FORMAT;
+    const timeFormat = process.env.REACT_APP_TIME_FORMAT;
     const locale = process.env.REACT_APP_LOCALE;
     
     const [date, setDate] = React.useState<string>("...");
@@ -35,7 +35,7 @@ export const Clock: React.FunctionComponent = () => {
         (message: string) => {
             console.log(message);
         });
-    }, [api]);
+    }, [dateFormat, api]);
 
     const updateTime = React.useCallback(() => {
         let currentTime = moment();
@@ -44,7 +44,7 @@ export const Clock: React.FunctionComponent = () => {
         if (currentTime.format(dateFormat) !== date) {
             updateDate();
         }
-    }, [date, updateDate]);
+    }, [dateFormat, timeFormat, date, updateDate]);
 
     React.useEffect(() => {
         moment.locale(locale);

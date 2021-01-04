@@ -13,6 +13,10 @@ services:
       - 3000:3000
     environment:
       - CHOKIDAR_USEPOLLING=true
+      - REACT_APP_DATE_FULL_FORMAT=YYYY-MM-DD HH:mm
+      - REACT_APP_DATE_NUM_FORMAT=YYYY-MM-DD
+      - REACT_APP_DATE_TEXT_FORMAT=Do MMMM YYYY
+      - REACT_APP_TIME_FORMAT=HH:mm
       - REACT_APP_LOCALE=sv
       - REACT_APP_API_SHOLIDAY_DAYS_URL=https://sholiday.faboul.se/dagar/v2.1
       - REACT_APP_API_YR_LOCATION_FORECAST_URL=https://api.met.no/weatherapi/locationforecast/2.0/compact

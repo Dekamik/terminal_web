@@ -11,16 +11,15 @@ interface ILocationData {
 
 export const WeatherSummaries: React.FunctionComponent = () => {
 
-    const storaUrsvik: ILocationData = {lat: 59.384872, lon: 17.947649, height: 33};
-    const visby: ILocationData = {lat: 57.638437, lon: 18.298376, height: 22};
-    const vängsö: ILocationData = {lat: 59.103409, lon: 17.218876, height: 16};
-
     const [forecastStoraUrsvik, setForecastStoraUrsvik] = React.useState<IYRLocationForecastResponse>();
     const [forecastVisby, setForecastVisby] = React.useState<IYRLocationForecastResponse>();
     const [forecastVängsö, setForecastVängsö] = React.useState<IYRLocationForecastResponse>();
 
     const updateWeather = React.useCallback(() => {
         let api = new YRApi();
+        let storaUrsvik: ILocationData = {lat: 59.384872, lon: 17.947649, height: 33};
+        let visby: ILocationData = {lat: 57.638437, lon: 18.298376, height: 22};
+        let vängsö: ILocationData = {lat: 59.103409, lon: 17.218876, height: 16};
 
         api.locationForecast(storaUrsvik.lat, storaUrsvik.lon, storaUrsvik.height,
             (data: IYRLocationForecastResponse) => {
