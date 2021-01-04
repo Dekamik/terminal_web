@@ -4,6 +4,7 @@ import { Clock } from './components/clock/Clock';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { WeatherSummaries } from './components/weather/WeatherSummaries';
+import { SLNextDepartures } from './components/public-transport/SLNextDepartures';
 
 export default class App extends React.Component {
   render() {
@@ -16,10 +17,10 @@ export default class App extends React.Component {
         </div>
         <WeatherSummaries />
         <div className="row">
-          <div className="col-4">
-            {/* Bus departures */}
+          <div className="col-6">
+            <SLNextDepartures stopName="Ursviks Holme" />
           </div>
-          <div className="col-8">
+          <div className="col-6">
             {/* Disturbances or news */}
           </div>
         </div>
