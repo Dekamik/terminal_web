@@ -14,5 +14,5 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
       - REACT_APP_LOCALE=sv
-      - REACT_APP_API_SHOLIDAY_URL=https://sholiday.faboul.se
-      - REACT_APP_API_SHOLIDAY_VERSION=v2.1
+      - REACT_APP_API_SHOLIDAY_DAYS_URL=https://sholiday.faboul.se/dagar/v2.1
+      - REACT_APP_API_YR_LOCATION_FORECAST_URL=https://api.met.no/weatherapi/locationforecast/2.0/compact

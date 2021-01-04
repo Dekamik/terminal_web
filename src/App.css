@@ -27,6 +27,16 @@
   font-size: 2.25rem;
 }
 
+.weather-summary > .weather-icon {
+  margin: 0 auto;
+  height: 40%;
+  width: 45%;
+}
+
+.filter-white {
+  filter: brightness(0) invert(1);
+}
+
 .temperature {
   font-family: Audiowide;
   text-align: center;

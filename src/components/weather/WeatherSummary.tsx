@@ -1,25 +1,19 @@
 import * as React from 'react';
 import { Temperature } from '../common/Temperature';
-import { WeatherIcon } from './WeatherIcon';
 
 interface IWeatherSummary {
     name: string;
-    lat: number;
-    lon: number;
-    msl: number;
+    temperature: number;
+    weatherCode: string;
 }
 
 export const WeatherSummary: React.FunctionComponent<IWeatherSummary> = (props) => {
-
-    const [tempC, setTempC] = React.useState<number>(0);
-    const [weather, setWeather] = React.useState<string>();
-
     return (
         <div className="weather-summary">
             <div className="header">{props.name}</div>
-            <Temperature temperature={0} />
-            <div>
-                <WeatherIcon weather="Cloud" size={48} />
+            <Temperature temperature={props.temperature} />
+            <div className="weather-icon">
+                <img className="filter-white" src={"/images/weathericons/" + props.weatherCode + ".svg"} />
             </div>
         </div>
     );

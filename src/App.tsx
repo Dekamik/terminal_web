@@ -3,7 +3,6 @@ import './App.css';
 import { Clock } from './components/clock/Clock';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { WeatherSummary } from './components/weather/WeatherSummary';
 import { WeatherSummaries } from './components/weather/WeatherSummaries';
 
 export default class App extends React.Component {
