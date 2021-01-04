@@ -33,6 +33,10 @@
   width: 45%;
 }
 
+.weather-summary > .weather-icon > svg {
+  margin-top: 2rem;
+}
+
 .filter-white {
   filter: brightness(0) invert(1);
 }

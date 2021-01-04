@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 interface ITemperature {
-    temperature: number;
+    temperature?: number;
     unit?: TemperatureUnit;
     hotTemperatureLimit?: number;
 }
@@ -14,8 +14,12 @@ export enum TemperatureUnit {
 
 export const Temperature: React.FunctionComponent<ITemperature> = (props) => {
     return (
-        <div className={"temperature " + (props.temperature >= (props.hotTemperatureLimit || 10) ? "hot" : "cold")}>
-            {props.temperature > 0 ? "+" : ""}{props.temperature}°{props.unit || TemperatureUnit.Celsius} 
+        <div className={"temperature " + (props.temperature != null ? (props.temperature >= (props.hotTemperatureLimit || 10) ? "hot" : "cold") : "text-warning")}>
+            {
+            props.temperature != null
+                ? `${props.temperature > 0 ? "+" : ""}${props.temperature}°${props.unit || TemperatureUnit.Celsius}`
+                : "N/A"
+            }
         </div>
     );
 }
