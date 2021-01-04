@@ -4,6 +4,7 @@ import { Clock } from './components/clock/Clock';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { WeatherSummary } from './components/weather/WeatherSummary';
+import { WeatherSummaries } from './components/weather/WeatherSummaries';
 
 export default class App extends React.Component {
   render() {
@@ -14,15 +15,13 @@ export default class App extends React.Component {
             <Clock />
           </div>
         </div>
+        <WeatherSummaries />
         <div className="row">
           <div className="col-4">
-            <WeatherSummary name="Stora Ursvik" lon={0} lat={0} msl={0}/>
+            {/* Bus departures */}
           </div>
-          <div className="col-4">
-            <WeatherSummary name="Visby" lon={0} lat={0} msl={0}/>
-          </div>
-          <div className="col-4">
-            <WeatherSummary name="Vängsö" lon={0} lat={0} msl={0}/>
+          <div className="col-8">
+            {/* Disturbances or news */}
           </div>
         </div>
       </div>

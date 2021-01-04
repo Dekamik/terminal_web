@@ -4,6 +4,7 @@ import { AlertTriangle, CloudDrizzle, CloudLightning, CloudRain, CloudSnow, Clou
 interface IWeatherIcon {
     weather: string;
     size: number;
+    color?: string;
 }
 
 export const WeatherIcon: React.FunctionComponent<IWeatherIcon> = (props) => {
@@ -12,23 +13,23 @@ export const WeatherIcon: React.FunctionComponent<IWeatherIcon> = (props) => {
         
         case 'Sun':
         case 'LightCloud':
-            return <Sun size={props.size}/>
+            return <Sun size={props.size} color={props.color}/>
 
         case 'PartlyCloud':
         case 'Cloud':
-            return <Cloud size={props.size}/>
+            return <Cloud size={props.size} color={props.color}/>
 
         case "Snow":
-            return <CloudSnow size={props.size}/>
+            return <CloudSnow size={props.size} color={props.color}/>
 
         case "Drizzle":
         case "LightRain":
-            return <CloudDrizzle size={props.size}/>
+            return <CloudDrizzle size={props.size} color={props.color}/>
 
         case "Rain":
-            return <CloudRain size={props.size}/>
+            return <CloudRain size={props.size} color={props.color}/>
         
         default:
-            return <AlertTriangle size={props.size}/>
+            return <AlertTriangle size={props.size} color={props.color}/>
     }
 }

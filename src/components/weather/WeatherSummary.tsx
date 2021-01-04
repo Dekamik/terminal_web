@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Temperature } from '../common/Temperature';
 import { WeatherIcon } from './WeatherIcon';
 
 interface IWeatherSummary {
@@ -16,9 +17,7 @@ export const WeatherSummary: React.FunctionComponent<IWeatherSummary> = (props) 
     return (
         <div className="weather-summary">
             <div className="header">{props.name}</div>
-            <div className={"temperature " + (tempC >= 10 ? "hot" : "cold")}>
-                {tempC > 0 ? "+" : ""}{tempC}°C 
-            </div>
+            <Temperature temperature={0} />
             <div>
                 <WeatherIcon weather="Cloud" size={48} />
             </div>

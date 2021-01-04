@@ -27,16 +27,16 @@
   font-size: 2.25rem;
 }
 
-.weather-summary > .temperature {
+.temperature {
   font-family: Audiowide;
   text-align: center;
 }
 
-.weather-summary > .temperature.hot {
+.temperature.hot {
   color: #ff6edd;
 }
 
-.weather-summary > .temperature.cold {
+.temperature.cold {
   color: #61dafb;
 }
 
