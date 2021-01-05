@@ -14,10 +14,18 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
       - REACT_APP_API_SHOLIDAY_DAYS_URL=https://sholiday.faboul.se/dagar/v2.1
+      - REACT_APP_API_TRAFIKLAB_HOME=
+      - REACT_APP_API_TRAFIKLAB_FINDSTATION_KEY=
+      - REACT_APP_API_TRAFIKLAB_FINDSTATION_URL=http://localhost:8080/https://api.sl.se/api2/typeahead.json
       - REACT_APP_API_TRAFIKLAB_REALTIMEDEPARTURES_KEY=
-      - REACT_APP_API_TRAFIKLAB_REALTIMEDEPARTURES_URL=https://api.sl.se/api2/realtimedeparturesV4.json
+      - REACT_APP_API_TRAFIKLAB_REALTIMEDEPARTURES_URL=http://localhost:8080/https://api.sl.se/api2/realtimedeparturesV4.json
       - REACT_APP_API_TRAFIKLAB_REALTIMEDEPARTURES_INTERVAL=30000
       - REACT_APP_API_YR_LOCATIONFORECAST_URL=https://api.met.no/weatherapi/locationforecast/2.0/compact
       - REACT_APP_CLOCK_DATE_FORMAT=Do MMMM YYYY
       - REACT_APP_CLOCK_TIME_FORMAT=HH:mm
       - REACT_APP_LANGUAGE=sv
+  api_proxy:
+    container_name: terminal_web_api_proxy
+    image: redocly/cors-anywhere
+    ports:
+      - 8080:8080

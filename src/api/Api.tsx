@@ -1,7 +1,7 @@
 export class Api {
 
     get(url: string, success: (data: any) => void, error?: (message: string) => void, final?: () => void) {
-        fetch(url, { method: 'get' })
+        fetch(url, { method: 'get'})
             .then(async response => {
                 if (response.ok) {
                     success(await response.json());

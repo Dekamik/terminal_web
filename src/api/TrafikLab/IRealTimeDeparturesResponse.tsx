@@ -1,51 +1,58 @@
 import { TransportMode } from "./TransportMode";
 
 export interface IRealTimeDeparturesResponse {
-    latestUpdate: Date;
-    dataAge: number;
-    buses: IRealTimeDeparture[];
-    metros: IRealTimeDeparture[];
-    trains: IRealTimeDeparture[];
-    trams: IRealTimeDeparture[];
-    ships: IRealTimeDeparture[];
-    stopPointDeviations: IStopPointDeviation[];
+    StatusCode: number;
+    ExecutionTime: number;
+    Message?: string;
+    ResponseData: IRealTimeDeparturesResponseData;
+}
+
+export interface IRealTimeDeparturesResponseData {
+    LatestUpdate: Date;
+    DataAge: number;
+    Buses: IRealTimeDeparture[];
+    Metros: IRealTimeDeparture[];
+    Trains: IRealTimeDeparture[];
+    Trams: IRealTimeDeparture[];
+    Ships: IRealTimeDeparture[];
+    StopPointDeviations: IStopPointDeviation[];
 }
 
 export interface IRealTimeDeparture {
-    transportMode: TransportMode;
-    lineNumber: string;
-    destination: string;
-    journeyDirection: number;
-    groupOfLine?: string;
-    stopAreaName: string;
-    stopAreaNumber: number;
-    stopPointNumber: number;
-    stopPointDesignation: string;
-    timeTabledDateTime: Date;
-    expectedDateTime: Date;
-    displayTime: string;
-    journeyNumber: number;
-    deviations: IDeviation[];
-    secondaryDestinationName?: string;
-    predictionState: PredictionState;
+    TransportMode: TransportMode;
+    LineNumber: string;
+    Destination: string;
+    JourneyDirection: number;
+    GroupOfLine?: string;
+    StopAreaName: string;
+    StopAreaNumber: number;
+    StopPointNumber: number;
+    StopPointDesignation?: string;
+    TimeTabledDateTime: Date;
+    ExpectedDateTime: Date;
+    DisplayTime: string;
+    JourneyNumber: number;
+    Deviations: IDeviation[];
+    SecondaryDestinationName?: string;
+    PredictionState: PredictionState;
 }
 
 export interface IDeviation {
-    consequence: string;
-    importanceLevel: number;
-    text: string;
+    Consequence: string;
+    ImportanceLevel: number;
+    Text: string;
 }
 
 export interface IStopPointDeviation {
-    stopInfo: IStopInfo;
-    deviation: IDeviation;
+    StopInfo: IStopInfo;
+    Deviation: IDeviation;
 }
 
 export interface IStopInfo {
-    groupOfLine?: string;
-    stopAreaName: string;
-    stopAreaNumber: number;
-    transportMode: TransportMode;
+    GroupOfLine?: string;
+    StopAreaName: string;
+    StopAreaNumber: number;
+    TransportMode: TransportMode;
 }
 
 export enum PredictionState {

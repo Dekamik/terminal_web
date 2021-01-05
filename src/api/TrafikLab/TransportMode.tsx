@@ -11,7 +11,7 @@ export enum TransportMode {
     Unspecified = ""
 }
 
-export function getModeIcon(mode: TransportMode) {
+export function getModeIcon(mode: string) {
     switch (mode) {
 
         case TransportMode.Bus:

@@ -22,7 +22,7 @@ export default class App extends React.Component {
         </div>
         <div className="row">
           <div className="col-6">
-            <SLNextDepartures stopName="Ursviks Holme" />
+            <SLNextDepartures />
           </div>
           <div className="col-6">
             {/* Disturbances or news */}
