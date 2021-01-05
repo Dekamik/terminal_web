@@ -3,7 +3,7 @@ import { IFindStationResponse } from '../../api/TrafikLab/IFindStationResponse';
 import { IRealTimeDeparture, IRealTimeDeparturesResponse } from '../../api/TrafikLab/IRealTimeDeparturesResponse';
 import { TrafikLabApi } from '../../api/TrafikLab/TrafikLabApi';
 import { TransportMode } from '../../api/TrafikLab/TransportMode';
-import { LineColor, SLDeparture } from './SLDeparture';
+import { getLineColor, LineColor, SLDeparture } from './SLDeparture';
 import { DisruptionSeverity, SLDepartureDisruptions } from './SLDepartureDisruptions';
 
 interface IDepartureItem {
@@ -19,6 +19,7 @@ export const SLNextDepartures: React.FunctionComponent = () => {
 
     const [siteId, setSiteId] = React.useState<number>(-1);
     const [homeStation, setHomeStation] = React.useState<string | undefined>("");
+    const [maxDepartures, setMaxDepartures] = React.useState<number>();
     const [departures, setDepartures] = React.useState<IDepartureItem[]>();
 
     const api = React.useMemo(() => new TrafikLabApi(), []);
@@ -32,7 +33,7 @@ export const SLNextDepartures: React.FunctionComponent = () => {
                     destination: item.Destination, 
                     departAt: item.ExpectedDateTime,
                     displayTime: item.DisplayTime,
-                    color: LineColor.Red
+                    color: getLineColor(item.TransportMode, item.GroupOfLine)
                 }))
             : [];
 
@@ -48,10 +49,7 @@ export const SLNextDepartures: React.FunctionComponent = () => {
                 ];
                 
                 mappedDepartures.sort((a, b) => a.departAt > b.departAt ? 1 : a.departAt < b.departAt ? -1 : 0);
-                
-                if (mappedDepartures.length > 5) {
-                    mappedDepartures.filter(item => item.departAt <= mappedDepartures[4].departAt);
-                }
+                mappedDepartures.length = maxDepartures || 5;
 
                 setDepartures(mappedDepartures);
             },
@@ -59,7 +57,7 @@ export const SLNextDepartures: React.FunctionComponent = () => {
                 console.log(message);
             }
         );
-    }, [api, siteId]);
+    }, [api, siteId, maxDepartures]);
 
     const findStation = React.useCallback(() => {
         if (homeStation) {
@@ -77,6 +75,7 @@ export const SLNextDepartures: React.FunctionComponent = () => {
         let interval = Number.parseInt(process.env.REACT_APP_API_TRAFIKLAB_REALTIMEDEPARTURES_INTERVAL || "-1");
 
         setHomeStation(process.env.REACT_APP_API_TRAFIKLAB_HOME);
+        setMaxDepartures(Number.parseInt(process.env.REACT_APP_API_TRAFIKLAB_REALTIMEDEPARTURES_MAXDEPARTURES || "5"));
 
         findStation();
 

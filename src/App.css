@@ -61,6 +61,14 @@
   background-color: #61dafb;
 }
 
+.text-purple {
+  color: #9f599a;
+}
+
+.bg-purple {
+  background-color: #9f599a;
+}
+
 .clock {
   text-align: center;
   font-size: 1rem;
