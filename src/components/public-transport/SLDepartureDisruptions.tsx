@@ -2,11 +2,6 @@ import { faExclamationTriangle, faFireAlt, faInfoCircle, faSun } from '@fortawes
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 
-interface ISLDepartureDisruptions {
-    disruptionsCount: number;
-    highestSeverity: DisruptionSeverity;
-}
-
 export enum DisruptionSeverity {
     None,
     Info,
@@ -48,12 +43,33 @@ export function getDisruptionSeverityBg(severity: DisruptionSeverity) {
     }
 }
 
+interface ISLDepartureDisruptions {
+    disruptionsCount: number;
+    highestSeverity: DisruptionSeverity;
+    modalId: string;
+}
+
 export const SLDepartureDisruptions: React.FunctionComponent<ISLDepartureDisruptions> = (props) => {
 
+    if (props.disruptionsCount === 0) {
+        return (
+            <tr>
+                <td className="text-center" colSpan={2}>{<FontAwesomeIcon icon={faSun} />}</td>
+                <td colSpan={2}>Inga störningar</td>
+            </tr>
+        );
+    }
+
     return (
-        <tr className={`${getDisruptionSeverityBg(props.highestSeverity)} ${props.highestSeverity === DisruptionSeverity.Warning ? "text-dark" : ""}`}>
-            <td className="text-center" colSpan={2}>{getDisruptionSeverityIcon(props.highestSeverity)}</td>
-            <td colSpan={2}>{props.disruptionsCount || "Inga"} störning{props.disruptionsCount !== 1 ? "ar" : ""}</td>
+        <tr className={`${getDisruptionSeverityBg(props.highestSeverity)} ${props.highestSeverity === DisruptionSeverity.Warning ? "text-dark" : ""}`}
+            data-toggle="modal" 
+            data-target={props.modalId}>
+            <td className="text-center" colSpan={2}>
+                { getDisruptionSeverityIcon(props.highestSeverity) }
+            </td>
+            <td colSpan={2}>
+                {props.disruptionsCount} störning{props.disruptionsCount !== 1 ? "ar" : ""}
+            </td>
         </tr>
     );
 }

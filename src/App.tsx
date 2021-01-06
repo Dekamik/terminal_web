@@ -5,6 +5,7 @@ import { Clock } from './components/clock/Clock';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { WeatherSummaries } from './components/weather/WeatherSummaries';
 import { SLNextDepartures } from './components/public-transport/SLNextDepartures';
+import { Navbar } from './components/navbar/Navbar';
 
 export default class App extends React.Component {
   render() {
@@ -13,6 +14,9 @@ export default class App extends React.Component {
         <div className="row">
           <div className="col-4">
             <Clock />
+          </div>
+          <div className="col-8">
+            <Navbar />
           </div>
         </div>
         <div className="row">
