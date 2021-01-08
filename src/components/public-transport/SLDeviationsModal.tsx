@@ -71,8 +71,8 @@ export const SLDeviationsModal: React.FunctionComponent<ISLDeviationsModal> = (p
                                             <p>
                                                 Detta påverkar {item.lines}  
                                                 {
-                                                    isSameDate(item.dateFrom, item.dateTo) ? ` ${getDateStr(item.dateFrom)} mellan ${moment(item.dateFrom).format("HH:mm")} och ${moment(item.dateTo).format("HH:mm")}`
-                                                        : isSameYear(item.dateFrom, item.dateTo) ? ` från ${getTimeStr(item.dateFrom)} ${getDateStr(item.dateFrom)} till ${getTimeStr(item.dateTo)} ${getDateStr(item.dateTo)}`
+                                                    isSameDate(item.dateFrom, item.dateTo) ? ` ${getDateStr(item.dateFrom)} mellan kl. ${moment(item.dateFrom).format("HH:mm")} och kl. ${moment(item.dateTo).format("HH:mm")}`
+                                                        : isSameYear(item.dateFrom, item.dateTo) ? ` från ${getDateStr(item.dateFrom)} kl. ${getTimeStr(item.dateFrom)} till ${getDateStr(item.dateTo)} kl. ${getTimeStr(item.dateTo)}`
                                                         : ` från ${moment(item.dateFrom).format("YYYY-MM-DD HH:mm")} till ${moment(item.dateTo).format("YYYY-MM-DD HH:mm")}`
                                                 }
                                             </p>
