@@ -7,6 +7,7 @@ import { TransportMode } from '../../api/TrafikLab/TransportMode';
 import { getLineColor, LineColor, SLDeparture } from './SLDeparture';
 import { DeviationSeverity, SLDepartureDeviationsRow } from './SLDepartureDeviationsRow';
 import { IDeviationItem, SLDeviationsModal } from './SLDeviationsModal';
+import { contains } from '../../helpers/StringHelper';
 
 interface IDepartureItem {
     transportMode: TransportMode;
@@ -82,8 +83,8 @@ export const SLNextDepartures: React.FunctionComponent = () => {
 
     const getDeviations = React.useCallback(() => {
         const determineSeverity = (item: IDeviations) => 
-            item.MainNews ? DeviationSeverity.Critical
-            : item.Header.toLowerCase().indexOf('försen') !== -1 || item.Header.toLowerCase().indexOf('inställd') !== -1 ? DeviationSeverity.Warning
+            item.MainNews || contains(item.Header, 'stopp') ? DeviationSeverity.Critical 
+            : contains(item.Header, 'försen') || contains(item.Header, 'fel') ? DeviationSeverity.Warning
             : DeviationSeverity.Info;
 
         if (deviationsLines && deviationsModes) {

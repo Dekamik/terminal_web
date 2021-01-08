@@ -1,5 +1,3 @@
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { Color } from '../Color';
 import { ModalCloseButton } from './ModalCloseButton';
@@ -8,7 +6,6 @@ import { ModalSize } from './ModalSize';
 interface ISingleButtonModal {
     id: string;
     title: string;
-    isCentered?: boolean;
     closeButtonText?: string;
     closeButtonColor?: Color;
     modalSize?: ModalSize;

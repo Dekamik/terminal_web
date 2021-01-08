@@ -1,5 +1,6 @@
 import moment from "moment";
 import React from "react";
+import { isDayAfterTomorrow, isDayBeforeYesterday, isSameDate, isSameYear, isToday, isTomorrow, isYesterday } from "../../helpers/DateHelper";
 import { ModalSize } from "../common/modal/ModalSize";
 import { SingleButtonModal } from "../common/modal/SingleButtonModal";
 import { DeviationSeverity } from "./SLDepartureDeviationsRow";
@@ -20,22 +21,6 @@ export interface IDeviationItem {
 
 export const SLDeviationsModal: React.FunctionComponent<ISLDeviationsModal> = (props) => {
 
-    const isSameDate = (a: Date, b: Date) => {
-        let first = moment(a);
-        let second = moment(b);
-
-        return first.year() === second.year()
-            && first.month() === second.month()
-            && first.date() === second.date();
-    }
-
-    const isSameYear = (a: Date, b: Date) => {
-        let first = moment(a);
-        let second = moment(b);
-
-        return first.year() === second.year();
-    }
-
     const getSeverityClasses = (items: IDeviationItem) => {
         switch (items.severity) {
 
@@ -53,6 +38,15 @@ export const SLDeviationsModal: React.FunctionComponent<ISLDeviationsModal> = (p
                 return "";
         }
     }
+
+    const getTimeStr = (time: Date) => moment(time).format("HH:mm");
+
+    const getDateStr = (date: Date) => isToday(date) ? "idag" :
+        isTomorrow(date) ? "imorgon" :
+        isDayAfterTomorrow(date) ? "i övermorgon" :
+        isYesterday(date) ? "igår" :
+        isDayBeforeYesterday(date) ? "i förrgår" :
+        `den ${moment(date).format("D/M")}`;
 
     return (
         <SingleButtonModal id="disruptionsModal" title="Störningar" modalSize={ModalSize.Large}>
@@ -75,12 +69,11 @@ export const SLDeviationsModal: React.FunctionComponent<ISLDeviationsModal> = (p
                                         </div>
                                         <div className="row">
                                             <p>
-                                                Detta påverkar {item.lines} mellan 
+                                                Detta påverkar {item.lines}  
                                                 {
-                                                    isSameDate(item.dateFrom, item.dateTo) ? ` ${moment(item.dateFrom).format("HH:mm")} och ${moment(item.dateTo).format("HH:mm")} den ${moment(item.dateTo).format("D/M")}`
-                                                        : isSameYear(item.dateFrom, item.dateTo) ? ` ${moment(item.dateFrom).format("HH:mm D/M")} och ${moment(item.dateTo).format("HH:mm D/M")}`
-                                                        : ` ${moment(item.dateFrom).format("HH:mm D/M YYYY")} och ${moment(item.dateTo).format("HH:mm D/M YYYY")}`
-                                                        
+                                                    isSameDate(item.dateFrom, item.dateTo) ? ` ${getDateStr(item.dateFrom)} mellan ${moment(item.dateFrom).format("HH:mm")} och ${moment(item.dateTo).format("HH:mm")}`
+                                                        : isSameYear(item.dateFrom, item.dateTo) ? ` från ${getTimeStr(item.dateFrom)} ${getDateStr(item.dateFrom)} till ${getTimeStr(item.dateTo)} ${getDateStr(item.dateTo)}`
+                                                        : ` från ${moment(item.dateFrom).format("YYYY-MM-DD HH:mm")} till ${moment(item.dateTo).format("YYYY-MM-DD HH:mm")}`
                                                 }
                                             </p>
                                         </div>

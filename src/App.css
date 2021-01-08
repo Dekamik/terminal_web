@@ -47,6 +47,10 @@
   filter: brightness(0) invert(1);
 }
 
+.filter-black {
+  filter: brightness(0);
+}
+
 .temperature {
   font-family: Audiowide;
   text-align: center;
