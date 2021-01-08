@@ -2,54 +2,54 @@ import { faExclamationTriangle, faFireAlt, faInfoCircle, faSun } from '@fortawes
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 
-export enum DisruptionSeverity {
+export enum DeviationSeverity {
     None,
     Info,
     Warning,
     Critical
 }
 
-export function getDisruptionSeverityIcon(severity: DisruptionSeverity) {
+export function getDeviationSeverityIcon(severity: DeviationSeverity) {
     switch (severity) {
-        case DisruptionSeverity.None:
+        case DeviationSeverity.None:
         default:
             return <FontAwesomeIcon icon={faSun} />
         
-        case DisruptionSeverity.Info:
+        case DeviationSeverity.Info:
             return <FontAwesomeIcon icon={faInfoCircle} />
         
-        case DisruptionSeverity.Warning:
+        case DeviationSeverity.Warning:
             return <FontAwesomeIcon icon={faExclamationTriangle} />
 
-        case DisruptionSeverity.Critical:
+        case DeviationSeverity.Critical:
             return <FontAwesomeIcon icon={faFireAlt} />
     }
 }
 
-export function getDisruptionSeverityBg(severity: DisruptionSeverity) {
+export function getDeviationSeverityBg(severity: DeviationSeverity) {
     switch (severity) {
-        case DisruptionSeverity.None:
+        case DeviationSeverity.None:
         default:
             return ""
         
-        case DisruptionSeverity.Info:
+        case DeviationSeverity.Info:
             return "bg-info"
         
-        case DisruptionSeverity.Warning:
+        case DeviationSeverity.Warning:
             return "bg-warning"
 
-        case DisruptionSeverity.Critical:
+        case DeviationSeverity.Critical:
             return "bg-danger"
     }
 }
 
-interface ISLDepartureDisruptions {
+interface ISLDepartureDeviationsRow {
     disruptionsCount: number;
-    highestSeverity: DisruptionSeverity;
+    highestSeverity: DeviationSeverity;
     modalId: string;
 }
 
-export const SLDepartureDisruptions: React.FunctionComponent<ISLDepartureDisruptions> = (props) => {
+export const SLDepartureDeviationsRow: React.FunctionComponent<ISLDepartureDeviationsRow> = (props) => {
 
     if (props.disruptionsCount === 0) {
         return (
@@ -61,11 +61,11 @@ export const SLDepartureDisruptions: React.FunctionComponent<ISLDepartureDisrupt
     }
 
     return (
-        <tr className={`${getDisruptionSeverityBg(props.highestSeverity)} ${props.highestSeverity === DisruptionSeverity.Warning ? "text-dark" : ""}`}
+        <tr className={`${getDeviationSeverityBg(props.highestSeverity)} ${props.highestSeverity === DeviationSeverity.Warning ? "text-dark" : ""}`}
             data-toggle="modal" 
             data-target={props.modalId}>
             <td className="text-center" colSpan={2}>
-                { getDisruptionSeverityIcon(props.highestSeverity) }
+                { getDeviationSeverityIcon(props.highestSeverity) }
             </td>
             <td colSpan={2}>
                 {props.disruptionsCount} störning{props.disruptionsCount !== 1 ? "ar" : ""}

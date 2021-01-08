@@ -1,5 +1,8 @@
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { Color } from '../Color';
+import { ModalCloseButton } from './ModalCloseButton';
 import { ModalSize } from './ModalSize';
 
 interface ISingleButtonModal {
@@ -19,9 +22,7 @@ export const SingleButtonModal: React.FunctionComponent<ISingleButtonModal> = (p
                 <div className="modal-content text-dark">
                     <div className="modal-header">
                         <h4 className="modal-title" id="modal-title">{props.title}</h4>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <ModalCloseButton />
                     </div>
                     <div className="modal-body">
                         {props.children}

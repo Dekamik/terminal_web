@@ -1,14 +1,12 @@
-import moment from 'moment';
 import * as React from 'react';
 import { IDeviations, IDeviationsResponse } from '../../api/TrafikLab/IDeviationsResponse';
 import { IFindStationResponse } from '../../api/TrafikLab/IFindStationResponse';
 import { IRealTimeDeparture, IRealTimeDeparturesResponse } from '../../api/TrafikLab/IRealTimeDeparturesResponse';
 import { TrafikLabApi } from '../../api/TrafikLab/TrafikLabApi';
 import { TransportMode } from '../../api/TrafikLab/TransportMode';
-import { ModalSize } from '../common/modal/ModalSize';
-import { SingleButtonModal } from '../common/modal/SingleButtonModal';
 import { getLineColor, LineColor, SLDeparture } from './SLDeparture';
-import { DisruptionSeverity, SLDepartureDisruptions } from './SLDepartureDisruptions';
+import { DeviationSeverity, SLDepartureDeviationsRow } from './SLDepartureDeviationsRow';
+import { IDeviationItem, SLDeviationsModal } from './SLDeviationsModal';
 
 interface IDepartureItem {
     transportMode: TransportMode;
@@ -17,16 +15,6 @@ interface IDepartureItem {
     departAt: Date;
     displayTime: string;
     color?: LineColor;
-}
-
-interface IDeviationItem {
-    id: string;
-    header: string;
-    details: string;
-    lines: string;
-    severity: DisruptionSeverity;
-    dateFrom: Date;
-    dateTo: Date;
 }
 
 export const SLNextDepartures: React.FunctionComponent = () => {
@@ -94,9 +82,9 @@ export const SLNextDepartures: React.FunctionComponent = () => {
 
     const getDeviations = React.useCallback(() => {
         const determineSeverity = (item: IDeviations) => 
-            item.MainNews ? DisruptionSeverity.Critical
-            : item.Header.toLowerCase().indexOf('försen') !== -1 || item.Header.toLowerCase().indexOf('inställd') !== -1 ? DisruptionSeverity.Warning
-            : DisruptionSeverity.Info;
+            item.MainNews ? DeviationSeverity.Critical
+            : item.Header.toLowerCase().indexOf('försen') !== -1 || item.Header.toLowerCase().indexOf('inställd') !== -1 ? DeviationSeverity.Warning
+            : DeviationSeverity.Info;
 
         if (deviationsLines && deviationsModes) {
             api.getDeviations(deviationsModes, deviationsLines, 
@@ -156,53 +144,19 @@ export const SLNextDepartures: React.FunctionComponent = () => {
         }
     }, [getDeviations]);
 
-    const getSeverityClasses = (items: IDeviationItem) => {
-        switch (items.severity) {
-
-            case DisruptionSeverity.Critical:
-                return "bg-danger text-white";
-            
-            case DisruptionSeverity.Warning:
-                return "bg-warning text-dark";
-
-            case DisruptionSeverity.Info:
-                return "bg-info text-white";
-            
-            case DisruptionSeverity.None:
-            default:
-                return "";
-        }
-    }
-
-    const getHighestSeverity = (items?: IDeviationItem[]) => {
+    const getHighestDeviationSeverity = (items?: IDeviationItem[]) => {
         if (items) {
-            if (items.filter((item => item.severity === DisruptionSeverity.Critical)).length !== 0) {
-                return DisruptionSeverity.Critical;
+            if (items.filter((item => item.severity === DeviationSeverity.Critical)).length !== 0) {
+                return DeviationSeverity.Critical;
             }
-            else if (items.filter((item => item.severity === DisruptionSeverity.Warning)).length !== 0) {
-                return DisruptionSeverity.Warning;
+            else if (items.filter((item => item.severity === DeviationSeverity.Warning)).length !== 0) {
+                return DeviationSeverity.Warning;
             }
-            else if (items.filter((item => item.severity === DisruptionSeverity.Info)).length !== 0) {
-                return DisruptionSeverity.Info;
+            else if (items.filter((item => item.severity === DeviationSeverity.Info)).length !== 0) {
+                return DeviationSeverity.Info;
             }
         }
-        return DisruptionSeverity.None;
-    }
-
-    const isSameDate = (a: Date, b: Date) => {
-        let first = moment(a);
-        let second = moment(b);
-
-        return first.year() === second.year()
-            && first.month() === second.month()
-            && first.date() === second.date();
-    }
-
-    const isSameYear = (a: Date, b: Date) => {
-        let first = moment(a);
-        let second = moment(b);
-
-        return first.year() === second.year();
+        return DeviationSeverity.None;
     }
 
     return (
@@ -226,46 +180,10 @@ export const SLNextDepartures: React.FunctionComponent = () => {
                                 )
                             : <tr key={0}><td colSpan={2}></td><td colSpan={2}>Inga avgångar</td></tr>
                     }
-                    <SLDepartureDisruptions key={6} disruptionsCount={deviations?.length || 0} highestSeverity={getHighestSeverity(deviations)} modalId="#disruptionsModal" />
+                    <SLDepartureDeviationsRow key={6} disruptionsCount={deviations?.length || 0} highestSeverity={getHighestDeviationSeverity(deviations)} modalId="#disruptionsModal" />
                 </tbody>
             </table>
-            <SingleButtonModal id="disruptionsModal" title="Störningar" modalSize={ModalSize.Large}>
-                {
-                    deviations
-                        ? deviations.map((item: IDeviationItem) => 
-                            <div className="col-12" id="accordion">
-                                <div className="card">
-                                    <div className={`card-header ${getSeverityClasses(item)}`} id={`header${item.id}`} data-toggle="collapse" data-target={`#details${item.id}`} aria-expanded="false" aria-controls={`details${item.id}`}>
-                                        <h5 className="text-center mx-auto">
-                                            {item.header}
-                                        </h5>
-                                    </div>
-                                    <div id={`details${item.id}`} className="collapse" aria-labelledby={`header${item.id}`} data-parent="#accordion">
-                                        <div className="card-body">
-                                            <div className="row">
-                                                <p>
-                                                    {item.details}
-                                                </p>
-                                            </div>
-                                            <div className="row">
-                                                <p>
-                                                    Detta påverkar {item.lines} mellan 
-                                                    {
-                                                        isSameDate(item.dateFrom, item.dateTo) ? ` ${moment(item.dateFrom).format("HH:mm")} och ${moment(item.dateTo).format("HH:mm")} den ${moment(item.dateTo).format("D/M")}`
-                                                            : isSameYear(item.dateFrom, item.dateTo) ? ` ${moment(item.dateFrom).format("HH:mm D/M")} och ${moment(item.dateTo).format("HH:mm D/M")}`
-                                                            : ` ${moment(item.dateFrom).format("HH:mm D/M YYYY")} och ${moment(item.dateTo).format("HH:mm D/M YYYY")}`
-                                                            
-                                                    }
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        )
-                        : null
-                }
-            </SingleButtonModal>
+            <SLDeviationsModal deviations={deviations} />
         </div>
     );
 }
