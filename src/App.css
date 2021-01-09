@@ -98,7 +98,7 @@
 
 .clock-date {
   font-family: Goldman;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
 }
 
 .clock-time {
@@ -125,6 +125,11 @@
   font-size: 1.4rem;
 }
 
+.sl-disruptions-header {
+  line-height: 0.75rem;
+  padding-top: 0.4rem !important;
+}
+
 .td {
   background-color: #282c34;
 }
@@ -135,4 +140,5 @@
 
 .no-border-radius {
   border-radius: 0;
+  
 }

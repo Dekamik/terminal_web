@@ -27,7 +27,7 @@ services:
       - REACT_APP_API_TRAFIKLAB_REALTIMEDEPARTURES_MAXDEPARTURES=5
       - REACT_APP_API_TRAFIKLAB_REALTIMEDEPARTURES_URL=http://localhost:8080/https://api.sl.se/api2/realtimedeparturesV4.json
       - REACT_APP_API_YR_LOCATIONFORECAST_URL=https://api.met.no/weatherapi/locationforecast/2.0/compact
-      - REACT_APP_CLOCK_DATE_FORMAT=Do MMMM YYYY
+      - REACT_APP_CLOCK_DATE_FORMAT=ddd Do MMMM YYYY
       - REACT_APP_CLOCK_TIME_FORMAT=HH:mm
       - REACT_APP_DATE_SHORTHAND_FORMAT=D/M
       - REACT_APP_LANGUAGE=sv

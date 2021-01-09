@@ -55,15 +55,18 @@ export const SLDeviationsModal: React.FunctionComponent<ISLDeviationsModal> = (p
                     ? props.deviations.map((item: IDeviationItem, i) => 
                         <div className="col-12" id="accordion" key={i}>
                             <div className="card text-white custom-border-dark">
-                                <div className={`card-header ${getSeverityClasses(item)}`} 
+                                <div className={`card-header ${getSeverityClasses(item)} text-center sl-disruptions-header`} 
                                     id={`header${item.id}`} 
                                     data-toggle="collapse" 
                                     data-target={`#details${item.id}`} 
                                     aria-expanded="false" 
                                     aria-controls={`details${item.id}`}>
-                                    <h5 className="text-center mx-auto">
+                                    <h5 className="mx-auto">
                                         {item.header}
                                     </h5>
+                                    <span>
+                                        {item.lines}
+                                    </span>
                                 </div>
                                 <div id={`details${item.id}`} className="collapse" aria-labelledby={`header${item.id}`} data-parent="#accordion">
                                     <div className="card-body bg-dark">
@@ -74,7 +77,7 @@ export const SLDeviationsModal: React.FunctionComponent<ISLDeviationsModal> = (p
                                         </div>
                                         <div className="row">
                                             <p>
-                                                Detta påverkar {item.lines}  
+                                                Detta påverkar {item.lines}
                                                 {
                                                     isSameDate(item.dateFrom, item.dateTo) ? ` ${getDateStr(item.dateFrom)} mellan kl. ${moment(item.dateFrom).format("HH:mm")} och kl. ${moment(item.dateTo).format("HH:mm")}`
                                                         : isSameYear(item.dateFrom, item.dateTo) ? ` från ${getDateStr(item.dateFrom)} kl. ${getTimeStr(item.dateFrom)} till ${getDateStr(item.dateTo)} kl. ${getTimeStr(item.dateTo)}`

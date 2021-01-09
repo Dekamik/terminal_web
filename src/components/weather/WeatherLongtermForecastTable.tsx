@@ -2,6 +2,7 @@ import moment from 'moment';
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { roundNumber } from '../../helpers/NumberHelper';
+import { capitalize } from '../../helpers/StringHelper';
 import { RootState } from '../../store';
 import { Temperature } from '../common/Temperature';
 
@@ -53,7 +54,7 @@ export const WeatherLongtermForecastTable: React.FunctionComponent<IWeatherLongt
                             <td colSpan={2}>
                                 <div className="col-12">
                                     <div className={`row ${isRedDay(item.date) ? "text-magenta" : ""}`}>
-                                        {item.dateStr}
+                                        {capitalize(item.dateStr)}
                                     </div>
                                     <div className="row font-size-2">
                                         <Temperature temperature={item.temperature} />

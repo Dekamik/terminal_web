@@ -122,7 +122,7 @@ export const WeatherSummaries: React.FunctionComponent = () => {
 
         if (longtermForecastRawData) {
             for (let item of longtermForecastRawData) {
-                let dateStr = moment(item.time).format("ddd D/M");
+                let dateStr = moment(item.time).format("dddd D/M");
                 let dateExists = longtermForecast.filter(item => item.dateStr === dateStr)[0] != null;
 
                 if (!dateExists) {

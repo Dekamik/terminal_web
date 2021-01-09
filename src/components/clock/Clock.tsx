@@ -8,6 +8,7 @@ import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import * as schedule from 'node-schedule';
 import { useDispatch } from 'react-redux';
 import { UPDATE_CALENDAR } from '../../store/calendar/types';
+import { capitalize } from '../../helpers/StringHelper';
 
 export const Clock: React.FunctionComponent = () => {
     
@@ -73,7 +74,11 @@ export const Clock: React.FunctionComponent = () => {
     return (
         <div className="clock">
             <div className="row">
-                <div className={"col-12 clock-date" + (isRedDay ? " text-magenta" : "")}>{date}</div>
+                <div className={"col-12 clock-date" + (isRedDay ? " text-magenta" : "")}>
+                    {
+                        capitalize(date)
+                    }
+                </div>
             </div>
             <div className="row">
                 <div className="col-12">
