@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import { rootReducer } from './store';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -10,9 +13,13 @@ import "@fontsource/poiret-one";
 import "@fontsource/roboto-slab";
 import "typeface-audiowide";
 
+const store = createStore(rootReducer);
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,17 +1,20 @@
-import { faInfo } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import moment from 'moment';
 import * as React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { Temperature } from '../common/Temperature';
 
 export interface IWeatherLongtermForecastTableItem {
     date: Date;
-    highestTemp: number;
-    lowestTemp: number;
+    dateStr: string;
+    isRedDay: boolean;
+    temperature: number;
     precipitation: number;
     wind: number;
-    symbolCode0000: string;
-    symbolCode0600: string;
-    symbolCode1200: string;
-    symbolCode1800: string;
+    symbolCode0000?: string;
+    symbolCode0600?: string;
+    symbolCode1200?: string;
+    symbolCode1800?: string;
 }
 
 interface IWeatherLongtermForecastTable {
@@ -20,33 +23,43 @@ interface IWeatherLongtermForecastTable {
 
 export const WeatherLongtermForecastTable: React.FunctionComponent<IWeatherLongtermForecastTable> = (props) => {
 
+    const calendarState = useSelector((state: RootState) => state.calendar);
+
+    const isRedDay = (date: Date) => {
+        let result = calendarState.calendar.filter(item => item.datum === moment(date).format("YYYY-MM-DD"))[0];
+        if (result) {
+            return result['röd dag'] === 'Ja'
+        }
+        return false;
+    }
+
     return (
-        <table className="table">
-            <thead>
+        <table className="table table-dark">
+            <thead className="text-center font-size-1-5">
                 <tr>
-                    <td scope="col" colSpan={2}></td>
-                    <td scope="col">00:00</td>
-                    <td scope="col">06:00</td>
-                    <td scope="col">12:00</td>
-                    <td scope="col">18:00</td>
+                    <th colSpan={2}></th>
+                    <th>00:00</th>
+                    <th>06:00</th>
+                    <th>12:00</th>
+                    <th>18:00</th>
                 </tr>
             </thead>
             <tbody>
                 {
                     props.forecast && props.forecast.length
                         ? props.forecast.map((item, i) => 
-                        <tr>
+                        <tr key={i}>
                             <td colSpan={2}>
                                 <div className="col-12">
-                                    <div className="row">
-
+                                    <div className={`row ${isRedDay(item.date) ? "text-magenta" : ""}`}>
+                                        {item.dateStr}
                                     </div>
-                                    <div className="row">
-                                        {item.highestTemp}° / {item.lowestTemp}°
+                                    <div className="row font-size-2">
+                                        <Temperature temperature={item.temperature} />
                                     </div>
                                     {
                                         item.precipitation
-                                            ? <div className="row">
+                                            ? <div className="row text-blue">
                                                 {item.precipitation} mm
                                             </div>
                                             : null
@@ -56,10 +69,10 @@ export const WeatherLongtermForecastTable: React.FunctionComponent<IWeatherLongt
                                     </div>
                                 </div>
                             </td>
-                            <td><img className="filter-black" src={"/images/weathericons/" + item.symbolCode0000 + ".svg"} alt={item.symbolCode0000} /></td>
-                            <td><img className="filter-black" src={"/images/weathericons/" + item.symbolCode0600 + ".svg"} alt={item.symbolCode0600} /></td>
-                            <td><img className="filter-black" src={"/images/weathericons/" + item.symbolCode1200 + ".svg"} alt={item.symbolCode1200} /></td>
-                            <td><img className="filter-black" src={"/images/weathericons/" + item.symbolCode1800 + ".svg"} alt={item.symbolCode1800} /></td>
+                            <td className="text-center">{item.symbolCode0000 ? <img className="filter-white" src={"/images/weathericons/" + item.symbolCode0000 + ".svg"} alt={item.symbolCode0000} /> : null}</td>
+                            <td className="text-center">{item.symbolCode0600 ? <img className="filter-white" src={"/images/weathericons/" + item.symbolCode0600 + ".svg"} alt={item.symbolCode0600} /> : null}</td>
+                            <td className="text-center">{item.symbolCode1200 ? <img className="filter-white" src={"/images/weathericons/" + item.symbolCode1200 + ".svg"} alt={item.symbolCode1200} /> : null}</td>
+                            <td className="text-center">{item.symbolCode1800 ? <img className="filter-white" src={"/images/weathericons/" + item.symbolCode1800 + ".svg"} alt={item.symbolCode1800} /> : null}</td>
                         </tr>
                         )
                         : <tr><td className="text-center" colSpan={6}>Väderleksrapport ej tillgänglig</td></tr>

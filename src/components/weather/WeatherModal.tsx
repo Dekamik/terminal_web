@@ -18,10 +18,10 @@ export const WeatherModal: React.FunctionComponent<IWeatherModal> = (props) => {
             modalSize={ModalSize.Large}>
             <ul className="nav nav-pills nav-fill" id="weatherTabs" role="tablist">
                 <li className="nav-item">
-                    <a className="nav-link active" id="dayTab" data-toggle="tab" href="#day" role="tab" aria-controls="day" aria-selected="true">Day</a>
+                    <a className="nav-link active" id="dayTab" data-toggle="tab" href="#day" role="tab" aria-controls="day" aria-selected="true">Kommande dygn</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" id="longTab" data-toggle="tab" href="#long" role="tab" aria-controls="long" aria-selected="false">Long term</a>
+                    <a className="nav-link" id="longTab" data-toggle="tab" href="#long" role="tab" aria-controls="long" aria-selected="false">Lång sikt</a>
                 </li>
             </ul>
             <div className="tab-content" id="weatherTabContent">

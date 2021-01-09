@@ -36,9 +36,9 @@ export interface ITimeseriesItem {
 
 export interface IForecast {
     instant: IInstant;
-    next_12_hours: INext12Hours;
+    next_12_hours?: INext12Hours;
     next_1_hours?: INext;
-    next_6_hours: INext;
+    next_6_hours?: INext;
 }
 
 export interface IInstant {

@@ -6,9 +6,13 @@ import { SHolidayApi } from '../../api/SHoliday/SHolidayApi';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import * as schedule from 'node-schedule';
+import { useDispatch } from 'react-redux';
+import { UPDATE_CALENDAR } from '../../store/calendar/types';
 
 export const Clock: React.FunctionComponent = () => {
     
+    const dispatch = useDispatch();
+
     const [date, setDate] = React.useState<string>("...");
     const [time, setTime] = React.useState<string>("...");
     const [flagDay, setFlagDay] = React.useState<string>("");
@@ -28,10 +32,13 @@ export const Clock: React.FunctionComponent = () => {
             
             api.days(currentTime,
             (response: IDaysResponse) => {
-                let day = response.dagar[0];
+                let currentDateStr = currentTime.format("YYYY-MM-DD");
+                let day = response.dagar.filter(item => item.datum === currentDateStr)[0];
                 setFlagDay(day.flaggdag);
                 setIsRedDay(day["röd dag"] === "Ja");
                 setNameDays(day.namnsdag);
+
+                dispatch(({type: UPDATE_CALENDAR, payload: {calendar: response.dagar}}))
             },
             (message: string) => {
                 console.log(message);
@@ -61,7 +68,7 @@ export const Clock: React.FunctionComponent = () => {
         return function cleanup() {
             clearInterval(clockInterval);
         };
-    }, []);
+    }, [dispatch]);
 
     return (
         <div className="clock">

@@ -52,8 +52,8 @@ export const SLDeviationsModal: React.FunctionComponent<ISLDeviationsModal> = (p
         <SingleButtonModal id="disruptionsModal" title="Störningar" modalSize={ModalSize.Large}>
             {
                 props.deviations
-                    ? props.deviations.map((item: IDeviationItem) => 
-                        <div className="col-12" id="accordion">
+                    ? props.deviations.map((item: IDeviationItem, i) => 
+                        <div className="col-12" id="accordion" key={i}>
                             <div className="card">
                                 <div className={`card-header ${getSeverityClasses(item)}`} id={`header${item.id}`} data-toggle="collapse" data-target={`#details${item.id}`} aria-expanded="false" aria-controls={`details${item.id}`}>
                                     <h5 className="text-center mx-auto">

@@ -1,13 +1,12 @@
-import { faClock, faCloudSunRain, faTemperatureHigh, faTemperatureLow, faUmbrella, faWind } from '@fortawesome/free-solid-svg-icons';
+import { faClock, faCloudSunRain, faTemperatureHigh, faUmbrella, faWind } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import moment from 'moment';
 import * as React from 'react';
+import { Temperature } from '../common/Temperature';
 
 export interface IWeatherDayForecastTableItem {
-    time: Date;
+    time: string;
     symbolCode: string;
-    highestTemp: number;
-    lowestTemp: number;
+    temperature: number;
     precipitation: number;
     wind: number;
 }
@@ -18,28 +17,26 @@ interface IWeatherDayForecastTable {
 
 export const WeatherDayForecastTable: React.FunctionComponent<IWeatherDayForecastTable> = (props) => {
     return (
-        <table className="table">
+        <table className="table table-dark text-center font-size-1-5">
             <thead>
                 <tr>
-                    <td scope="col"><FontAwesomeIcon icon={faClock} /></td>
-                    <td scope="col"><FontAwesomeIcon icon={faCloudSunRain} /></td>
-                    <td scope="col"><FontAwesomeIcon icon={faTemperatureHigh} />C</td>
-                    <td scope="col"><FontAwesomeIcon icon={faTemperatureLow} />C</td>
-                    <td scope="col"><FontAwesomeIcon icon={faUmbrella} /></td>
-                    <td scope="col"><FontAwesomeIcon icon={faWind} /></td>
+                    <th><FontAwesomeIcon icon={faClock} /></th>
+                    <th><FontAwesomeIcon icon={faCloudSunRain} /></th>
+                    <th><FontAwesomeIcon icon={faTemperatureHigh} />C</th>
+                    <th><FontAwesomeIcon icon={faUmbrella} /></th>
+                    <th><FontAwesomeIcon icon={faWind} /></th>
                 </tr>
             </thead>
             <tbody>
                 {
                     props.forecast && props.forecast.length
                         ? props.forecast.map((item, i) => 
-                        <tr>
-                            <td>{moment(item.time).format("HH:mm")}</td>
-                            <td><img className="filter-black" src={"/images/weathericons/" + item.symbolCode + ".svg"} alt={item.symbolCode} /></td>
-                            <td>{item.highestTemp}°</td>
-                            <td>{item.lowestTemp}°</td>
-                            <td>{item.precipitation} mm</td>
-                            <td>{item.wind} m/s</td>
+                        <tr key={i}>
+                            <td className="align-middle">{item.time}</td>
+                            <td className="align-middle"><img className="filter-white weather-table-icon-sm" src={"/images/weathericons/" + item.symbolCode + ".svg"} alt={item.symbolCode} /></td>
+                            <td className="align-middle"><Temperature temperature={item.temperature} /></td>
+                            <td className="align-middle">{item.precipitation} mm</td>
+                            <td className="align-middle">{item.wind} m/s</td>
                         </tr>
                         )
                         : <tr><td className="text-center" colSpan={6}>Väderleksrapport ej tillgänglig</td></tr>

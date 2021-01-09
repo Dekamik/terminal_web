@@ -16,7 +16,7 @@ export const SingleButtonModal: React.FunctionComponent<ISingleButtonModal> = (p
     return (
         <div id={props.id} className="modal fade" tabIndex={-1} role="dialog" aria-hidden="true" aria-labelledby="modal-title">
             <div className={`modal-dialog modal-dialog-centered ${props.modalSize || ""}`} role="document">
-                <div className="modal-content text-dark">
+                <div className="modal-content bg-dark text-white">
                     <div className="modal-header">
                         <h4 className="modal-title" id="modal-title">{props.title}</h4>
                         <ModalCloseButton />
