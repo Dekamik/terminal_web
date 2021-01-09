@@ -54,14 +54,19 @@ export const SLDeviationsModal: React.FunctionComponent<ISLDeviationsModal> = (p
                 props.deviations
                     ? props.deviations.map((item: IDeviationItem, i) => 
                         <div className="col-12" id="accordion" key={i}>
-                            <div className="card">
-                                <div className={`card-header ${getSeverityClasses(item)}`} id={`header${item.id}`} data-toggle="collapse" data-target={`#details${item.id}`} aria-expanded="false" aria-controls={`details${item.id}`}>
+                            <div className="card text-white custom-border-dark">
+                                <div className={`card-header ${getSeverityClasses(item)}`} 
+                                    id={`header${item.id}`} 
+                                    data-toggle="collapse" 
+                                    data-target={`#details${item.id}`} 
+                                    aria-expanded="false" 
+                                    aria-controls={`details${item.id}`}>
                                     <h5 className="text-center mx-auto">
                                         {item.header}
                                     </h5>
                                 </div>
                                 <div id={`details${item.id}`} className="collapse" aria-labelledby={`header${item.id}`} data-parent="#accordion">
-                                    <div className="card-body">
+                                    <div className="card-body bg-dark">
                                         <div className="row">
                                             <p>
                                                 {item.details}

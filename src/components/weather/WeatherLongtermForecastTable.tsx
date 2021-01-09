@@ -1,6 +1,7 @@
 import moment from 'moment';
 import * as React from 'react';
 import { useSelector } from 'react-redux';
+import { roundNumber } from '../../helpers/NumberHelper';
 import { RootState } from '../../store';
 import { Temperature } from '../common/Temperature';
 
@@ -60,7 +61,7 @@ export const WeatherLongtermForecastTable: React.FunctionComponent<IWeatherLongt
                                     {
                                         item.precipitation
                                             ? <div className="row text-blue">
-                                                {item.precipitation} mm
+                                                {roundNumber(item.precipitation)} mm
                                             </div>
                                             : null
                                     }
