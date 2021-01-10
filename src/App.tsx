@@ -16,7 +16,10 @@ export default class App extends React.Component {
               <div className="col-4">
                   <Clock />
               </div>
-              <div className="col-8">
+              <div className="col-5">
+                {/* Alerts */}
+              </div>
+              <div className="col-3">
                   <Navbar />
               </div>
           </div>
