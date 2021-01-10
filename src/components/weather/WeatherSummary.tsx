@@ -109,7 +109,6 @@ export const WeatherSummary: React.FunctionComponent<IWeatherSummary> = (props) 
 
     React.useEffect(() => {
         function updateWeather() {
-            setIsLoading(true);
             let api = new YRApi();
 
             api.locationForecast(props.lat, props.lon, props.height,
@@ -117,10 +116,12 @@ export const WeatherSummary: React.FunctionComponent<IWeatherSummary> = (props) 
                     setTemperature(data.properties.timeseries[0].data.instant.details.air_temperature);
                     setWeatherCode(data.properties.timeseries[0].data.next_1_hours?.summary.symbol_code);
                     updateModalData(data);
+                    
                 },
                 (message: string) => {
                     console.log(message);
-                }, () => {
+                }, 
+                () => {
                     setIsLoading(false);
                 }
             );
