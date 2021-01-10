@@ -20,7 +20,7 @@ interface IWeatherSummary {
 
 export const WeatherSummary: React.FunctionComponent<IWeatherSummary> = (props) => {
 
-    const [isLoading, setIsLoading] = React.useState<boolean>(false);
+    const [isLoading, setIsLoading] = React.useState<boolean>(true);
     const [temperature, setTemperature] = React.useState<number>();
     const [weatherCode, setWeatherCode] = React.useState<string>();
     const [weatherModalDayForecast, setWeatherDayForecast] = React.useState<IWeatherDayForecastTableItem[]>();
@@ -143,7 +143,9 @@ export const WeatherSummary: React.FunctionComponent<IWeatherSummary> = (props) 
                 <div className="weather-summary"
                     data-toggle="modal"
                     data-target={`#${props.modalId}`}>
-                    <div className="header">{props.name}</div>
+                    <h1>
+                        {props.name}
+                    </h1>
                     <Temperature temperature={temperature} />
                     <div className="weather-icon">
                     {

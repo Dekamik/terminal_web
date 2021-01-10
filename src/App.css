@@ -37,10 +37,6 @@
   font-size: 4rem;
 }
 
-.weather-summary > .header {
-  font-size: 2.25rem;
-}
-
 .weather-summary > .weather-icon {
   margin: 0 auto;
   height: 40%;
