@@ -1,6 +1,8 @@
 import { faCog, faHome, faTasks } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
+import { NavLink } from 'react-router-dom';
+import { HOME, SETTINGS, TODO } from '../../routes/WebRoutes';
 
 export const Navbar: React.FunctionComponent = () => {
 
@@ -11,9 +13,9 @@ export const Navbar: React.FunctionComponent = () => {
             </button>
             <div className="collapse navbar-collapse" id="navBarAltMarkup">
                 <div className="navbar-nav ml-auto">
-                    <a className="nav-item nav-link active ml-4" href="/"><FontAwesomeIcon icon={faHome} /></a>
-                    <a className="nav-item nav-link ml-4" href="/"><FontAwesomeIcon icon={faTasks} /></a>
-                    <a className="nav-item nav-link ml-4" href="/"><FontAwesomeIcon icon={faCog} /></a>
+                    <NavLink exact to={HOME} className="nav-item nav-link ml-4" activeClassName="active" ><FontAwesomeIcon icon={faHome} /></NavLink>
+                    <NavLink to={TODO} className="nav-item nav-link ml-4" activeClassName="active" ><FontAwesomeIcon icon={faTasks} /></NavLink>
+                    <NavLink to={SETTINGS} className="nav-item nav-link ml-4" activeClassName="active" ><FontAwesomeIcon icon={faCog} /></NavLink>
                 </div>
             </div>
         </nav>
