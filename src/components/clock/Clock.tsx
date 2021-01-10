@@ -9,6 +9,7 @@ import * as schedule from 'node-schedule';
 import { useDispatch } from 'react-redux';
 import { UPDATE_CALENDAR } from '../../store/calendar/types';
 import { capitalize } from '../../helpers/StringHelper';
+import { Spinner } from '../common/Spinner';
 
 export const Clock: React.FunctionComponent = () => {
     
@@ -19,6 +20,8 @@ export const Clock: React.FunctionComponent = () => {
     const [flagDay, setFlagDay] = React.useState<string>("");
     const [isRedDay, setIsRedDay] = React.useState<boolean>(false);
     const [nameDays, setNameDays] = React.useState<string[]>([]);
+
+    const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
     React.useEffect(() => {
         // Read environment variables
@@ -43,6 +46,9 @@ export const Clock: React.FunctionComponent = () => {
             },
             (message: string) => {
                 console.log(message);
+            },
+            () => {
+                setIsLoading(false);
             });
         };
 
@@ -72,26 +78,28 @@ export const Clock: React.FunctionComponent = () => {
     }, [dispatch]);
 
     return (
-        <div className="clock">
-            <div className="row">
-                <div className={"col-12 clock-date" + (isRedDay ? " text-magenta" : "")}>
-                    {
-                        capitalize(date)
-                    }
+        <Spinner isLoading={isLoading}>
+            <div className="clock">
+                <div className="row">
+                    <div className={"col-12 clock-date" + (isRedDay ? " text-magenta" : "")}>
+                        {
+                            capitalize(date)
+                        }
+                    </div>
                 </div>
-            </div>
-            <div className="row">
-                <div className="col-12">
-                    <div className="clock-time">{time}</div>
+                <div className="row">
+                    <div className="col-12">
+                        <div className="clock-time">{time}</div>
+                    </div>
                 </div>
-            </div>
-            <div className="row">
-                <div className="col-12">
-                    <div className="clock-names discreet">
-                        {nameDays.join(" ")} {flagDay ? <FontAwesomeIcon icon={faFlag} /> : null}
+                <div className="row">
+                    <div className="col-12">
+                        <div className="clock-names discreet">
+                            {nameDays.join(" ")} {flagDay ? <FontAwesomeIcon icon={faFlag} /> : null}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </Spinner>
     );
 }
