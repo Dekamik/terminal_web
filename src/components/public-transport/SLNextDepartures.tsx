@@ -8,6 +8,7 @@ import { getLineColor, LineColor, SLDeparture } from './SLDeparture';
 import { DeviationSeverity, SLDepartureDeviationsRow } from './SLDepartureDeviationsRow';
 import { IDeviationItem, SLDeviationsModal } from './SLDeviationsModal';
 import { contains } from '../../helpers/StringHelper';
+import { Spinner } from '../common/Spinner';
 
 interface IDepartureItem {
     transportMode: TransportMode;
@@ -27,6 +28,10 @@ export const SLNextDepartures: React.FunctionComponent = () => {
     const [deviationsLines, setDeviationsLines] = React.useState<string | undefined>();
     const [deviationsModes, setDeviationsModes] = React.useState<string | undefined>();
     const [deviations, setDeviations] = React.useState<IDeviationItem[]>();
+
+    const [isFindStationLoading, setIsFindStationLoading] = React.useState<boolean>(true);
+    const [isDeparturesLoading, setIsDeparturesLoading] = React.useState<boolean>(true);
+    const [isDeviationsLoading, setIsDeviationsLoading] = React.useState<boolean>(true);
 
     const api = React.useMemo(() => new TrafikLabApi(), []);
 
@@ -62,6 +67,9 @@ export const SLNextDepartures: React.FunctionComponent = () => {
                 },
                 (message: string) => {
                     console.log(message);
+                },
+                () => {
+                    setIsDeparturesLoading(false);
                 }
             );
         }
@@ -76,6 +84,9 @@ export const SLNextDepartures: React.FunctionComponent = () => {
                 },
                 (message: string) => {
                     console.log(message);
+                },
+                () => {
+                    setIsFindStationLoading(false);
                 }
             );
         }
@@ -102,6 +113,9 @@ export const SLNextDepartures: React.FunctionComponent = () => {
                 },
                 (message: string) => {
                     console.log(message);
+                },
+                () => {
+                    setIsDeviationsLoading(false);
                 }
             );
         }
@@ -161,30 +175,32 @@ export const SLNextDepartures: React.FunctionComponent = () => {
     }
 
     return (
-        <div className="col-12 sl-next-departures">
-            <h2 className="text-center">
-                {
-                    homeStation ? `SL - ${homeStation}` : "Station saknas"
-                }
-            </h2>
-            <table className="table table-dark table-sm table-borderless">
-                <tbody>
+        <Spinner isLoading={isFindStationLoading || isDeparturesLoading || isDeviationsLoading}>
+            <div className="col-12 sl-next-departures">
+                <h2 className="text-center">
                     {
-                        departures && departures.length 
-                            ? departures.map((departure: IDepartureItem, i: number) => 
-                                <SLDeparture key={i}
-                                    trasportMode={departure.transportMode} 
-                                    lineNumber={departure.lineNumber}
-                                    destination={departure.destination}
-                                    displayTime={departure.displayTime}
-                                    color={departure.color} />
-                                )
-                            : <tr key={0}><td colSpan={2}></td><td colSpan={2}>Inga avgångar</td></tr>
+                        homeStation ? `SL - ${homeStation}` : "Station saknas"
                     }
-                    <SLDepartureDeviationsRow key={6} disruptionsCount={deviations?.length || 0} highestSeverity={getHighestDeviationSeverity(deviations)} modalId="#disruptionsModal" />
-                </tbody>
-            </table>
-            <SLDeviationsModal deviations={deviations} />
-        </div>
+                </h2>
+                <table className="table table-dark table-sm table-borderless">
+                    <tbody>
+                        {
+                            departures && departures.length 
+                                ? departures.map((departure: IDepartureItem, i: number) => 
+                                    <SLDeparture key={i}
+                                        trasportMode={departure.transportMode} 
+                                        lineNumber={departure.lineNumber}
+                                        destination={departure.destination}
+                                        displayTime={departure.displayTime}
+                                        color={departure.color} />
+                                    )
+                                : <tr key={0}><td colSpan={2}></td><td colSpan={2}>Inga avgångar</td></tr>
+                        }
+                        <SLDepartureDeviationsRow key={6} disruptionsCount={deviations?.length || 0} highestSeverity={getHighestDeviationSeverity(deviations)} modalId="#disruptionsModal" />
+                    </tbody>
+                </table>
+                <SLDeviationsModal deviations={deviations} />
+            </div>
+        </Spinner>
     );
 }
