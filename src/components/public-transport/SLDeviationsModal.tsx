@@ -1,6 +1,7 @@
 import moment from "moment";
 import React from "react";
 import { isDayAfterTomorrow, isDayBeforeYesterday, isSameDate, isSameYear, isToday, isTomorrow, isYesterday } from "../../helpers/DateHelper";
+import { contains } from "../../helpers/StringHelper";
 import { ModalSize } from "../common/modal/ModalSize";
 import { SingleButtonModal } from "../common/modal/SingleButtonModal";
 import { DeviationSeverity } from "./SLDepartureDeviationsRow";
@@ -64,9 +65,13 @@ export const SLDeviationsModal: React.FunctionComponent<ISLDeviationsModal> = (p
                                     <h5 className="mx-auto">
                                         {item.header}
                                     </h5>
-                                    <span>
-                                        {item.lines}
-                                    </span>
+                                    {
+                                        !contains(item.header, item.lines)
+                                            ? <span>
+                                                {item.lines}
+                                            </span>
+                                            : null
+                                    }
                                 </div>
                                 <div id={`details${item.id}`} className="collapse" aria-labelledby={`header${item.id}`} data-parent="#accordion">
                                     <div className="card-body bg-dark">
