@@ -5,7 +5,9 @@ import { Home } from './components/Home';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Clock } from './components/clock/Clock';
 import { Navbar } from './components/navbar/Navbar';
-import { HOME, SETTINGS, TODO } from './routes/WebRoutes';
+import { SL_TRAVEL_PLANNER, HOME, SETTINGS, TODO } from './routes/WebRoutes';
+import { Settings } from './components/Settings';
+import { SLTravelPlanner } from './components/SLTravelPlanner';
 
 export default class App extends React.Component {
   render() {
@@ -28,11 +30,14 @@ export default class App extends React.Component {
             <Route exact path={HOME}>
               <Home />
             </Route>
+            <Route path={SL_TRAVEL_PLANNER}>
+              <SLTravelPlanner />
+            </Route>
             <Route path={TODO}>
 
             </Route>
             <Route path={SETTINGS}>
-
+              <Settings />
             </Route>
           </Switch>
         </div>

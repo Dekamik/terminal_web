@@ -4,7 +4,7 @@ import { WeatherSummary } from './weather/WeatherSummary';
 
 export const Home: React.FunctionComponent = () => {
     return (
-        <>
+        <div className="home">
             <div className="row">
                 <div className="col-4">
                     <WeatherSummary name="Vängsö" modalId="vängsöWeatherModal" lat={59.103409} lon={17.218876} height={16} />
@@ -21,6 +21,6 @@ export const Home: React.FunctionComponent = () => {
                     <SLNextDepartures />
                 </div>
             </div>
-        </>
+        </div>
     );
 }
