@@ -42,7 +42,7 @@ export const Clock: React.FunctionComponent = () => {
                 setIsRedDay(day["röd dag"] === "Ja");
                 setNameDays(day.namnsdag);
 
-                dispatch(({type: UPDATE_CALENDAR, payload: {calendar: response.dagar}}))
+                dispatch({type: UPDATE_CALENDAR, payload: {calendar: response.dagar}});
             },
             (message: string) => {
                 console.log(message);
