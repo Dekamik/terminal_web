@@ -4,6 +4,9 @@
   font-family: Roboto Slab;
   min-height: 100vh;
   overflow: hidden;
+}
+
+.home {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -137,4 +140,8 @@
 
 .no-border-radius {
   border-radius: 0;
+}
+
+.searchbar {
+  padding-top: 8rem;
 }
