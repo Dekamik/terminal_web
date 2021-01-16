@@ -4,6 +4,7 @@ import moment from 'moment-timezone';
 import * as React from 'react';
 import { ITimeseriesItem, IYRLocationForecastResponse } from '../../api/YR/IYRLocationForecastResponse';
 import { YRApi } from '../../api/YR/YRApi';
+import { toCamelCase } from '../../helpers/StringHelper';
 import { Spinner } from '../common/Spinner';
 import { Temperature } from '../common/Temperature';
 import { IWeatherDayForecastTableItem } from './WeatherDayForecastTable';
@@ -12,7 +13,6 @@ import { WeatherModal } from './WeatherModal';
 
 interface IWeatherSummary {
     name: string;
-    modalId: string;
     lat: number;
     lon: number;
     height: number;
@@ -139,27 +139,25 @@ export const WeatherSummary: React.FunctionComponent<IWeatherSummary> = (props) 
 
     return (
         <Spinner isLoading={isLoading}>
-            <>
-                <div className="weather-summary"
-                    data-toggle="modal"
-                    data-target={`#${props.modalId}`}>
-                    <h1>
-                        {props.name}
-                    </h1>
-                    <Temperature temperature={temperature} />
-                    <div className="weather-icon">
-                    {
-                        weatherCode 
-                            ? <img className="filter-white" src={"/images/weathericons/" + weatherCode + ".svg"} alt={weatherCode} />
-                            : <FontAwesomeIcon icon={faExclamationTriangle} className="text-warning"/>
-                    }
-                    </div>
+            <div className="weather-summary"
+                data-toggle="modal"
+                data-target={`#${toCamelCase(props.name)}WeatherModal`}>
+                <h1>
+                    {props.name}
+                </h1>
+                <Temperature temperature={temperature} />
+                <div className="weather-icon">
+                {
+                    weatherCode 
+                        ? <img className="filter-white" src={"/images/weathericons/" + weatherCode + ".svg"} alt={weatherCode} />
+                        : <FontAwesomeIcon icon={faExclamationTriangle} className="text-warning"/>
+                }
                 </div>
-                <WeatherModal id={props.modalId}
-                    locationName={props.name} 
-                    dayForecast={weatherModalDayForecast}
-                    longtermForecast={weatherModalLongtermForecast} />
-            </>
+            </div>
+            <WeatherModal id={`${toCamelCase(props.name)}WeatherModal`}
+                locationName={props.name} 
+                dayForecast={weatherModalDayForecast}
+                longtermForecast={weatherModalLongtermForecast} />
         </Spinner>
     );
 }

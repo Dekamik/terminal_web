@@ -1,8 +1,8 @@
-import { faBusAlt, faCog, faHome, faTasks } from '@fortawesome/free-solid-svg-icons';
+import { faCog, faHome } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
-import { SL_TRAVEL_PLANNER, HOME, SETTINGS, TODO } from '../../routes/WebRoutes';
+import { HOME, SETTINGS } from '../../routes/WebRoutes';
 
 export const Navbar: React.FunctionComponent = () => {
 
