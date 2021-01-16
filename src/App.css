@@ -4,9 +4,6 @@
   font-family: Roboto Slab;
   min-height: 100vh;
   overflow: hidden;
-}
-
-.home {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -109,10 +106,6 @@
 
 .clock-names {
   padding-top: 0.7rem;
-}
-
-.sl-next-departures {
-  height: 20.5rem;
 }
 
 .sl-next-departures > table > tbody > tr:first-of-type {
