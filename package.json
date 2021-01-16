@@ -4,8 +4,6 @@
   "private": true,
   "dependencies": {
     "@fontsource/goldman": "^4.1.0",
-    "@fontsource/major-mono-display": "^4.1.0",
-    "@fontsource/poiret-one": "^4.1.0",
     "@fontsource/roboto-slab": "^4.1.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",

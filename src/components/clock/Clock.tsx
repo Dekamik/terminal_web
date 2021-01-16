@@ -89,6 +89,7 @@ export const Clock: React.FunctionComponent = () => {
                 </div>
                 <div className="row">
                     <div className="col-12">
+                        <div className="clock-time-shadow">88:88</div>
                         <div className="clock-time">{time}</div>
                     </div>
                 </div>

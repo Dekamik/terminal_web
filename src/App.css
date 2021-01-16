@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Digital-7';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/digital-7.mono.ttf') format('truetype')
+}
+
 .app {
   /*background-color: #282c34;*/
   color: white;
@@ -107,10 +114,25 @@
 }
 
 .clock-time {
-  font-family: Major Mono Display;
+  position: relative;
+  z-index: 100;
+  font-family: Digital-7;
   line-height: 0.7;
-  /*font-size: calc(50px + 2vmin);*/
-  font-size: 5rem;
+  font-size: 8rem;
+  color: #61dafb;
+  text-shadow: 0 0 .75rem #61dafb;
+}
+
+.clock-time-shadow {
+  font-family: Digital-7;
+  line-height: 0.7;
+  font-size: 8rem;
+  color: rgba(97, 218, 251, .125);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .clock-names {
@@ -132,7 +154,7 @@ table {
 }
 
 .sl-deviations-row td {
-  border: #454d55 2px solid;
+  border: #454d55 3px solid;
 }
 
 .sl-deviations-row td:first-child {

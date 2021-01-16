@@ -8,10 +8,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import "@fontsource/goldman";
-import "@fontsource/major-mono-display";
-import "@fontsource/poiret-one";
 import "@fontsource/roboto-slab";
 import "typeface-audiowide";
+import "./fonts/digital-7.mono.ttf"
 
 const store = createStore(rootReducer);
 
