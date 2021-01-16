@@ -4,7 +4,7 @@ import * as React from 'react';
 
 export const ModalCloseButton: React.FunctionComponent = () => {
     return (
-        <button type="button" className="btn btn-white text-white" data-dismiss="modal" aria-label="Close">
+        <button type="button" className="btn btn-danger text-white" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true"><FontAwesomeIcon icon={faTimes} /></span>
         </button>
     );

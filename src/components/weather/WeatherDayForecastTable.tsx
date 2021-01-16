@@ -31,14 +31,13 @@ export const WeatherDayForecastTable: React.FunctionComponent<IWeatherDayForecas
                 {
                     props.forecast && props.forecast.length
                         ? props.forecast.map((item, i) => 
-                        <tr key={i}>
-                            <td className="align-middle">{item.time}</td>
-                            <td className="align-middle"><img className="filter-white weather-table-icon-sm" src={"/images/weathericons/" + item.symbolCode + ".svg"} alt={item.symbolCode} /></td>
-                            <td className="align-middle"><Temperature temperature={item.temperature} /></td>
-                            <td className="align-middle">{item.precipitation} mm</td>
-                            <td className="align-middle">{item.wind} m/s</td>
-                        </tr>
-                        )
+                            <tr key={i}>
+                                <td className="align-middle">{item.time}</td>
+                                <td className="align-middle"><img className="filter-white weather-table-icon-sm" src={"/images/weathericons/" + item.symbolCode + ".svg"} alt={item.symbolCode} /></td>
+                                <td className="align-middle"><Temperature temperature={item.temperature} /></td>
+                                <td className="align-middle">{item.precipitation !== 0 ? `${item.precipitation} mm` : "-"}</td>
+                                <td className="align-middle">{item.wind} m/s</td>
+                            </tr>)
                         : <tr><td className="text-center" colSpan={6}>Väderleksrapport ej tillgänglig</td></tr>
                 }
             </tbody>

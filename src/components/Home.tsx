@@ -17,9 +17,11 @@ export const Home: React.FunctionComponent = () => {
                 </div>
             </div>
             <div className="row">
-                <div className="col-6">
+                <div className="col-2"></div>
+                <div className="col-8">
                     <SLNextDepartures />
                 </div>
+                <div className="col-2"></div>
             </div>
         </div>
     );

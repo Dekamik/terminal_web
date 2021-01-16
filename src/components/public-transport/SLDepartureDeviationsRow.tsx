@@ -60,14 +60,16 @@ export const SLDepartureDeviationsRow: React.FunctionComponent<ISLDepartureDevia
         );
     }
 
+    const getStyling = () => `${getDeviationSeverityBg(props.highestSeverity)} ${props.highestSeverity === DeviationSeverity.Warning ? "text-dark" : ""}`;
+
     return (
-        <tr className={`${getDeviationSeverityBg(props.highestSeverity)} ${props.highestSeverity === DeviationSeverity.Warning ? "text-dark" : ""}`}
+        <tr className={` sl-deviations-row`}
             data-toggle="modal" 
             data-target={props.modalId}>
-            <td className="text-center" colSpan={2}>
+            <td className={`${getStyling()} text-center`} colSpan={2}>
                 { getDeviationSeverityIcon(props.highestSeverity) }
             </td>
-            <td colSpan={2}>
+            <td className={`${getStyling()}`} colSpan={2}>
                 {props.disruptionsCount} störning{props.disruptionsCount !== 1 ? "ar" : ""}
             </td>
         </tr>
