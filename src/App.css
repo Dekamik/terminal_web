@@ -141,7 +141,19 @@
 
 .sl-next-departures > table > tbody > tr:first-of-type {
   font-weight: bold;
-  border-bottom: white 2px solid;
+  box-shadow: none;
+  background-color: #17a2b8;
+}
+
+.sl-next-departures > table > tbody > tr.imminent {
+  animation: next-departure-blinker 2s step-start infinite;
+}
+
+@keyframes next-departure-blinker {
+  50% {
+    background-color: #61dafb;
+    box-shadow: 0 0 .75rem #61dafb;
+  }
 }
 
 .sl-next-departures > .table {

@@ -182,15 +182,17 @@ export const SLNextDepartures: React.FunctionComponent = () => {
                         homeStation ? `SL - ${homeStation}` : "Station saknas"
                     }
                 </h2>
-                <table className="table table-dark table-sm table-borderless">
+                <table className="table table-dark table-borderless">
                     <tbody>
                         {
                             departures && departures.length 
                                 ? departures.map((departure: IDepartureItem, i: number) => 
                                     <SLDeparture key={i}
+                                        isNext={i === 0}
                                         trasportMode={departure.transportMode} 
                                         lineNumber={departure.lineNumber}
                                         destination={departure.destination}
+                                        departAt={departure.departAt}
                                         displayTime={departure.displayTime}
                                         color={departure.color} />
                                     )

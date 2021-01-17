@@ -2,11 +2,14 @@ import * as React from 'react';
 import { getModeIcon, TransportMode } from '../../api/TrafikLab/TransportMode';
 
 export interface ISLDeparture {
+    isNext: boolean;
     trasportMode: TransportMode;
     lineNumber: string;
     destination: string;
+    departAt: Date;
     displayTime: string;
     color?: LineColor;
+    imminentMillis?: number;
 }
 
 export enum LineColor {
@@ -46,8 +49,11 @@ export function getLineColor(transportMode: TransportMode, groupOfLine?: string)
 }
 
 export const SLDeparture: React.FunctionComponent<ISLDeparture> = (props) => {
+
+    const isImminent = () => (new Date(props.departAt).getTime() - new Date().getTime()) < (props.imminentMillis || 300000);
+
     return (
-        <tr>
+        <tr className={props.isNext && isImminent() ? "imminent" : ""}>
             <td className={props.color}>{getModeIcon(props.trasportMode)}</td>
             <td>{props.lineNumber}</td>
             <td>{props.destination}</td>
