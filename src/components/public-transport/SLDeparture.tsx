@@ -50,11 +50,11 @@ export function getLineColor(transportMode: TransportMode, groupOfLine?: string)
 
 export const SLDeparture: React.FunctionComponent<ISLDeparture> = (props) => {
 
-    const isImminent = () => (new Date(props.departAt).getTime() - new Date().getTime()) < (props.imminentMillis || 300000);
+    const isImminent = () => (new Date(props.departAt).getTime() - new Date().getTime()) < (props.imminentMillis || 180000);
 
     return (
         <tr className={props.isNext && isImminent() ? "imminent" : ""}>
-            <td className={props.color}>{getModeIcon(props.trasportMode)}</td>
+            <td className={`transport-mode-icon ${props.color}`}>{getModeIcon(props.trasportMode)}</td>
             <td>{props.lineNumber}</td>
             <td>{props.destination}</td>
             <td>{props.displayTime}</td>

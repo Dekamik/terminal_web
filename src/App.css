@@ -149,6 +149,14 @@
   animation: next-departure-blinker 2s step-start infinite;
 }
 
+.transport-mode-icon {
+  filter: 
+    drop-shadow(-1px -1px 0 rgba(0, 0, 0, .5))
+    drop-shadow(-1px 1px 0 rgba(0, 0, 0, .5))
+    drop-shadow(1px -1px 0 rgba(0, 0, 0, .5))
+    drop-shadow(1px 1px 0 rgba(0, 0, 0, .5));
+}
+
 @keyframes next-departure-blinker {
   50% {
     background-color: #61dafb;
