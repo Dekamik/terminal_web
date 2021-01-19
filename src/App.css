@@ -5,6 +5,27 @@
   src: url('./fonts/digital-7.mono.ttf') format('truetype')
 }
 
+@font-face {
+  font-family: 'Goldman';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/Goldman-Regular.ttf') format('truetype')
+}
+
+@font-face {
+  font-family: 'Audiowide';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/Audiowide-Regular.ttf') format('truetype')
+}
+
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/RobotoSlab-VariableFont_wght.ttf') format('truetype')
+}
+
 .app {
   /*background-color: #282c34;*/
   color: white;
