@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Typeahead } from 'react-bootstrap-typeahead';
 
 export const SLTravelPlanner: React.FunctionComponent = () => {
     return (
@@ -6,6 +7,7 @@ export const SLTravelPlanner: React.FunctionComponent = () => {
             <form>
                 <div className="row">
                     <div className="col-6 mx-auto searchbar">
+                        <Typeahead options={["a", "b", "c"]} />
                     </div>
                 </div>
                 <div className="row">
@@ -14,6 +16,9 @@ export const SLTravelPlanner: React.FunctionComponent = () => {
                     <div className="col-8">
 
                     </div>
+                </div>
+                <div className="row">
+                    <hr />
                 </div>
             </form>
         </div>

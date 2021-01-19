@@ -27,11 +27,13 @@
 }
 
 .app {
-  /*background-color: #282c34;*/
   color: white;
   font-family: Roboto Slab;
   min-height: 100vh;
   overflow: hidden;
+}
+
+.flex-fill {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
