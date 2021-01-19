@@ -2,10 +2,8 @@ import * as React from 'react';
 
 export const Settings: React.FunctionComponent = () => {
     return (
-        <div className="col-12">
-            <div className="row">
-                
-            </div>
-        </div>
+        <>
+            <h1 className="text-center">Inställningar</h1>
+        </>
     );
 }

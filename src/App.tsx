@@ -5,10 +5,11 @@ import { Home } from './components/Home';
 import { BrowserRouter, Route, Switch, useLocation } from 'react-router-dom'
 import { Clock } from './components/clock/Clock';
 import { Navbar } from './components/navbar/Navbar';
-import { SL_TRAVEL_PLANNER, HOME, SETTINGS, TODO } from './routes/WebRoutes';
+import { SL_TRAVEL_PLANNER, HOME, SETTINGS, TODO, STOCKS } from './routes/WebRoutes';
 import { Settings } from './components/Settings';
 import { SLTravelPlanner } from './components/SLTravelPlanner';
 import { Todo } from './components/Todo';
+import { Stocks } from './components/Stocks';
 
 const NavRoute = ({exact = false, path, component: Component}) => {
 
@@ -32,10 +33,7 @@ const NavRoute = ({exact = false, path, component: Component}) => {
           <div className="col-4">
             <Clock />
           </div>
-          <div className="col-4">
-            {/* Alerts */}
-          </div>
-          <div className="col-4">
+          <div className="col-8">
             <Navbar />
           </div>
         </div>
@@ -53,6 +51,7 @@ export default class App extends React.Component {
           <NavRoute exact path={HOME} component={Home} />
           <NavRoute path={SL_TRAVEL_PLANNER} component={SLTravelPlanner} />
           <NavRoute path={TODO} component={Todo} />
+          <NavRoute path={STOCKS} component={Stocks} />
           <NavRoute path={SETTINGS} component={Settings} />
         </Switch>
       </BrowserRouter>
