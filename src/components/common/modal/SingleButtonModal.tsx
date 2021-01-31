@@ -26,7 +26,7 @@ export const SingleButtonModal: React.FunctionComponent<ISingleButtonModal> = (p
                     </div>
                     <div className="modal-footer custom-border-dark">
                         <button type="button" 
-                            className={`btn btn-${props.closeButtonColor || Color.Secondary}`} 
+                            className={`btn btn-lg btn-${props.closeButtonColor || Color.Secondary}`} 
                             data-dismiss="modal">
                             {props.closeButtonText || "Close"}
                         </button>

@@ -4,10 +4,16 @@ import { Typeahead } from 'react-bootstrap-typeahead';
 export const SLTravelPlanner: React.FunctionComponent = () => {
     return (
         <div className="col-12">
+            <div className="row">
+                <hr/>
+            </div>
             <h1 className="text-center">SL Reseplanerare</h1>
             <form>
                 <div className="row">
-                    <div className="col-8 mx-auto searchbar">
+                    <hr/>
+                </div>
+                <div className="row">
+                    <div className="col-8 mx-auto">
                         <Typeahead 
                             options={["a", "b", "c"]} 
                             placeholder="Ange destination..."

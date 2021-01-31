@@ -9,7 +9,7 @@ import { SL_TRAVEL_PLANNER, HOME, SETTINGS, TODO, STOCKS } from './routes/WebRou
 import { Settings } from './components/settings/Settings';
 import { SLTravelPlanner } from './components/sl-travel-planner/SLTravelPlanner';
 import { Todo } from './components/todo/Todo';
-import { Stocks } from './components/dstonks/Stocks';
+import { DStonks } from './components/dstonks/DStonks';
 
 const NavRoute = ({exact = false, path, component: Component}) => {
 
@@ -51,7 +51,7 @@ export default class App extends React.Component {
           <NavRoute exact path={HOME} component={Home} />
           <NavRoute path={SL_TRAVEL_PLANNER} component={SLTravelPlanner} />
           <NavRoute path={TODO} component={Todo} />
-          <NavRoute path={STOCKS} component={Stocks} />
+          <NavRoute path={STOCKS} component={DStonks} />
           <NavRoute path={SETTINGS} component={Settings} />
         </Switch>
       </BrowserRouter>
