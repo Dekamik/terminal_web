@@ -6,10 +6,10 @@ import { BrowserRouter, Route, Switch, useLocation } from 'react-router-dom'
 import { Clock } from './components/clock/Clock';
 import { Navbar } from './components/navbar/Navbar';
 import { SL_TRAVEL_PLANNER, HOME, SETTINGS, TODO, STOCKS } from './routes/WebRoutes';
-import { Settings } from './components/Settings';
-import { SLTravelPlanner } from './components/SLTravelPlanner';
-import { Todo } from './components/Todo';
-import { Stocks } from './components/Stocks';
+import { Settings } from './components/settings/Settings';
+import { SLTravelPlanner } from './components/sl-travel-planner/SLTravelPlanner';
+import { Todo } from './components/todo/Todo';
+import { Stocks } from './components/dstonks/Stocks';
 
 const NavRoute = ({exact = false, path, component: Component}) => {
 

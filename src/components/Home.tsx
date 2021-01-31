@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SLNextDepartures } from './public-transport/SLNextDepartures';
+import { SLNextDepartures } from './sl-departures/SLNextDepartures';
 import { WeatherSummary } from './weather/WeatherSummary';
 
 export const Home: React.FunctionComponent = () => {
