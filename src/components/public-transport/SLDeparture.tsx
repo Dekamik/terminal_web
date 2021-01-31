@@ -50,7 +50,7 @@ export function getLineColor(transportMode: TransportMode, groupOfLine?: string)
 
 export const SLDeparture: React.FunctionComponent<ISLDeparture> = (props) => {
 
-    const isImminent = () => (new Date(props.departAt).getTime() - new Date().getTime()) < (props.imminentMillis || 180000);
+    const isImminent = () => false;// (new Date(props.departAt).getTime() - new Date().getTime()) < (props.imminentMillis || 180000);
 
     return (
         <tr className={props.isNext && isImminent() ? "imminent" : ""}>
