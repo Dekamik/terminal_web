@@ -1,4 +1,4 @@
-import { faSync } from '@fortawesome/free-solid-svg-icons';
+import { faRedo } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 
@@ -20,7 +20,7 @@ export const Settings: React.FunctionComponent = () => {
                 </div>
                 <div className="col-4">
                     <button className="btn btn-dark btn-block btn-lg" onClick={() => window.location.reload()}>
-                        <FontAwesomeIcon icon={faSync} /> Ladda om appen
+                        <FontAwesomeIcon icon={faRedo} /> Ladda om appen
                     </button>
                 </div>
                 <div className="col-4">
