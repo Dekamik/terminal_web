@@ -1,24 +1,21 @@
 #!/bin/bash
-set -uo pipefail
+set -xeuo pipefail
 IFS=$'\n\t'
-
-set -x
 
 pushd ..
 
 # Clean docker
 docker-compose down
 docker image prune -f
-docker rmi terminal_web_terminal_web
+docker rmi terminal_web_terminal_web || true
 
-# Re-install NPM stuff
-rm -rf ./node_modules/
-rm package-lock.json
+# Reinstall npm stuff
+rm -rf ./node_modules/ || true
+rm package-lock.json || true
 npm cache clean --force
 npm install
 
 # Rebuild image
 docker-compose build --no-cache
-docker-compose up
 
 popd
