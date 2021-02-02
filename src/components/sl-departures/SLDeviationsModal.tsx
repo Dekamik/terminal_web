@@ -1,6 +1,6 @@
 import moment from "moment";
 import React from "react";
-import { isDayAfterTomorrow, isDayBeforeYesterday, isSameDate, isSameYear, isToday, isTomorrow, isYesterday } from "../../helpers/DateHelper";
+import { getDateStr, getTimeStr, isSameDate, isSameYear } from "../../helpers/DateHelper";
 import { contains } from "../../helpers/StringHelper";
 import { ModalSize } from "../common/modal/ModalSize";
 import { SingleButtonModal } from "../common/modal/SingleButtonModal";
@@ -39,15 +39,6 @@ export const SLDeviationsModal: React.FunctionComponent<ISLDeviationsModal> = (p
                 return "";
         }
     }
-
-    const getTimeStr = (time: Date) => moment(time).format("HH:mm");
-
-    const getDateStr = (date: Date) => isToday(date) ? "idag" :
-        isTomorrow(date) ? "imorgon" :
-        isDayAfterTomorrow(date) ? "i övermorgon" :
-        isYesterday(date) ? "igår" :
-        isDayBeforeYesterday(date) ? "i förrgår" :
-        `den ${moment(date).format("D/M")}`;
 
     return (
         <SingleButtonModal id="disruptionsModal" title="Störningar" modalSize={ModalSize.Large}>

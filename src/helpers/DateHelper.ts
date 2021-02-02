@@ -42,3 +42,12 @@ export const isSameYear = (a: Date, b: Date): boolean => {
     let second = moment(b);
     return first.year() === second.year();
 }
+
+export const getTimeStr = (time: Date) => moment(time).format("HH:mm");
+
+export const getDateStr = (date: Date) => isToday(date) ? "idag" :
+    isTomorrow(date) ? "imorgon" :
+    isDayAfterTomorrow(date) ? "i övermorgon" :
+    isYesterday(date) ? "igår" :
+    isDayBeforeYesterday(date) ? "i förrgår" :
+    `den ${moment(date).format("D/M")}`;

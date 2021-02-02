@@ -1,6 +1,7 @@
 import moment from 'moment';
 import * as React from 'react';
 import Parser from 'rss-parser';
+import { getDateStr, getTimeStr } from '../../helpers/DateHelper';
 import { capitalize } from '../../helpers/StringHelper';
 import { Spinner } from '../common/Spinner';
 import { IRssFeedItem, RssFeedItem } from './RssFeedItem';
@@ -30,7 +31,7 @@ export const RssFeed: React.FunctionComponent<IRssFeed> = (props) => {
                 let items = res.items.map(item => ({
                     title: item.title,
                     description: item.description,
-                    date: capitalize(moment(item.pubDate).format("ddd Do MMM YYYY HH:mm")),
+                    date: capitalize(`${getDateStr(new Date(Date.parse(item.pubDate ?? "")))} kl. ${getTimeStr(new Date(Date.parse(item.pubDate ?? "")))}`),
                     link: item.link,
                     feedImage: res.image?.url,
                     feedImageAlt: res.image?.title
