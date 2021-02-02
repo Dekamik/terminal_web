@@ -118,6 +118,11 @@
   background-color: #61dafb;
 }
 
+button.btn.btn-magenta {
+  color: white;
+  background-color: #ff6edd;
+}
+
 .text-purple {
   color: #9f599a;
 }
@@ -256,7 +261,7 @@ a:hover {
   text-align: center;
 }
 
-button.btn {
+button.btn.btn-dark {
   border: #454d55 3px solid;
   border-radius: .25rem;
 }

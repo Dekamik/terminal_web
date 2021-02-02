@@ -40,7 +40,7 @@ export const RssFeedItem: React.FunctionComponent<IRssFeedItem> = (props) => {
                     </div>
                 </div>
                 <div className="card-footer text-right">
-                    <button className="btn btn-dark btn-lg" onClick={sendLink} ><FontAwesomeIcon icon={faSms} /> Skicka länk</button>
+                    <button className="btn btn-info btn-lg" onClick={sendLink} ><FontAwesomeIcon icon={faSms} /> Skicka länk</button>
                 </div>
             </div>
             <hr/>
