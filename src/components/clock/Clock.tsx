@@ -8,7 +8,6 @@ import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import * as schedule from 'node-schedule';
 import { useDispatch } from 'react-redux';
 import { UPDATE_CALENDAR } from '../../store/calendar/types';
-import { capitalize } from '../../helpers/StringHelper';
 import { Spinner } from '../common/Spinner';
 
 export const Clock: React.FunctionComponent = () => {
@@ -25,7 +24,7 @@ export const Clock: React.FunctionComponent = () => {
 
     React.useEffect(() => {
         // Read environment variables
-        let dateFormat = process.env.REACT_APP_CLOCK_DATE_FORMAT;
+        let dateFormat = "YYYY-MM-DD"
         let timeFormat = process.env.REACT_APP_CLOCK_TIME_FORMAT;
         let locale = process.env.REACT_APP_LANGUAGE;
 
@@ -82,22 +81,13 @@ export const Clock: React.FunctionComponent = () => {
             <div className="clock">
                 <div className="row">
                     <div className={"col-12 clock-date" + (isRedDay ? " text-magenta" : "")}>
-                        {
-                            capitalize(date)
-                        }
+                        {date} {flagDay.length !== 0 ? <FontAwesomeIcon icon={faFlag} /> : null}
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-12">
                         <div className="clock-time-shadow">88:88</div>
                         <div className="clock-time">{time}</div>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-12">
-                        <div className="clock-names discreet">
-                            {nameDays.join(" ")} {flagDay ? <FontAwesomeIcon icon={faFlag} /> : null}
-                        </div>
                     </div>
                 </div>
             </div>

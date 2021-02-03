@@ -19,10 +19,10 @@ export const RssFeed: React.FunctionComponent<IRssFeed> = (props) => {
 
         let parser = new Parser({
             customFields: {
-                item: ['description']
+                item: ['description', 'category']
             }
         });
-        
+
         parser.parseURL("http://localhost:8080/https://www.svd.se/?service=rss", (err, res) => {
             if (err) {
                 console.log(err);
@@ -35,7 +35,8 @@ export const RssFeed: React.FunctionComponent<IRssFeed> = (props) => {
                     date: capitalize(`${getDateStr(new Date(Date.parse(item.pubDate ?? "")))} kl. ${getTimeStr(new Date(Date.parse(item.pubDate ?? "")))}`),
                     link: item.link,
                     feedImage: res.image?.url,
-                    feedImageAlt: res.image?.title
+                    feedImageAlt: res.image?.title,
+                    category: item.category
                 }));
                 setFeed(items);
             }
@@ -52,6 +53,7 @@ export const RssFeed: React.FunctionComponent<IRssFeed> = (props) => {
             <div className="row">
                 <h1 className="mx-auto">RSS-flöde</h1>
             </div>
+            <hr/>
             <div className="row">
                 <div className="col-8 mx-auto">
                     <Spinner isLoading={isLoading}>

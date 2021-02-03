@@ -11,6 +11,7 @@ export interface IRssFeedItem {
     link?: string;
     feedImage?: string;
     feedImageAlt?: string;
+    category?: string;
 }
 
 export const RssFeedItem: React.FunctionComponent<IRssFeedItem> = (props) => {
@@ -29,7 +30,7 @@ export const RssFeedItem: React.FunctionComponent<IRssFeedItem> = (props) => {
                     data-target={`#${detailsId}`}
                     aria-expanded="false"
                     aria-controls={detailsId}>
-                    <div className="row align-middle">
+                    <div className="row">
                         <div className="col-10">
                             <h4>
                                 {props.title}
@@ -39,14 +40,25 @@ export const RssFeedItem: React.FunctionComponent<IRssFeedItem> = (props) => {
                             <img className="rss-thumbnail" src={props.feedImage} alt={props.feedImageAlt} />
                         </div>
                     </div>
-                </div>
-                <div id={detailsId} className="collapse">
-                    <div className="card-body">
-                        <p className="text-muted">{props.date}</p>
-                        <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(props.description) ?? ""}}>
-
+                    <div className="row text-muted">
+                        <div className="col-6">
+                            {props.date}
+                        </div>
+                        <div className="col-6 text-right">
+                            {props.category}
                         </div>
                     </div>
+                </div>
+                <div id={detailsId} className="collapse">
+                    {
+                        props.description !== undefined && props.description?.length !== 0
+                            ? <div className="card-body">
+                                <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(props.description) ?? ""}}>
+        
+                                </div>
+                            </div>
+                            : null
+                    }
                     <div className="card-footer text-right">
                         <button className="btn btn-info btn-lg" onClick={sendLink} ><FontAwesomeIcon icon={faSms} /> Skicka länk</button>
                     </div>

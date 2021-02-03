@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 import { Home } from './components/Home';
 import { BrowserRouter, Route, Switch, useLocation } from 'react-router-dom'
-import { Clock } from './components/clock/Clock';
 import { Navbar } from './components/navbar/Navbar';
 import { SL_TRAVEL_PLANNER, HOME, SETTINGS, TODO, STOCKS, RSS_FEED } from './routes/WebRoutes';
 import { Settings } from './components/settings/Settings';

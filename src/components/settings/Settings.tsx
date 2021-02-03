@@ -7,9 +7,6 @@ export const Settings: React.FunctionComponent = () => {
 
     return (
         <div className="col-11 mx-auto">
-            <div className="row">
-                <hr/>
-            </div>
             <h1 className="text-center">Inställningar</h1>
             <div className="row">
                 <hr/>

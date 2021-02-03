@@ -4,9 +4,6 @@ import { Typeahead } from 'react-bootstrap-typeahead';
 export const SLTravelPlanner: React.FunctionComponent = () => {
     return (
         <div className="col-12">
-            <div className="row">
-                <hr/>
-            </div>
             <h1 className="text-center">SL Reseplanerare</h1>
             <form>
                 <div className="row">
