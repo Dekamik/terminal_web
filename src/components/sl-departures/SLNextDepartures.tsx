@@ -6,9 +6,10 @@ import { TrafikLabApi } from '../../api/TrafikLab/TrafikLabApi';
 import { TransportMode } from '../../api/TrafikLab/TransportMode';
 import { getLineColor, LineColor, SLDeparture } from './SLDeparture';
 import { DeviationSeverity, SLDepartureDeviationsRow } from './SLDepartureDeviationsRow';
-import { IDeviationItem, SLDeviationsModal } from './SLDeviationsModal';
+import { SLDeviationsModal } from './SLDeviationsModal';
 import { contains } from '../../helpers/StringHelper';
 import { Spinner } from '../common/Spinner';
+import { ISLDeviationsModalItem } from './SLDeviationsModalItem';
 
 interface IDepartureItem {
     transportMode: TransportMode;
@@ -27,7 +28,7 @@ export const SLNextDepartures: React.FunctionComponent = () => {
     const [departures, setDepartures] = React.useState<IDepartureItem[]>();
     const [deviationsLines, setDeviationsLines] = React.useState<string | undefined>();
     const [deviationsModes, setDeviationsModes] = React.useState<string | undefined>();
-    const [deviations, setDeviations] = React.useState<IDeviationItem[]>();
+    const [deviations, setDeviations] = React.useState<ISLDeviationsModalItem[]>();
 
     const [isFindStationLoading, setIsFindStationLoading] = React.useState<boolean>(true);
     const [isDeparturesLoading, setIsDeparturesLoading] = React.useState<boolean>(true);
@@ -101,8 +102,9 @@ export const SLNextDepartures: React.FunctionComponent = () => {
         if (deviationsLines && deviationsModes) {
             api.getDeviations(deviationsModes, deviationsLines, 
                 (data: IDeviationsResponse) => {
-                    setDeviations(data.ResponseData.map((item: IDeviations) => ({
+                    setDeviations(data.ResponseData.map((item: IDeviations, i) => ({
                         id: item.DevCaseGid.toString(),
+                        key: i,
                         header: item.Header,
                         details: item.Details,
                         lines: item.Scope,
@@ -159,7 +161,7 @@ export const SLNextDepartures: React.FunctionComponent = () => {
         }
     }, [getDeviations]);
 
-    const getHighestDeviationSeverity = (items?: IDeviationItem[]) => {
+    const getHighestDeviationSeverity = (items?: ISLDeviationsModalItem[]) => {
         if (items) {
             if (items.filter((item => item.severity === DeviationSeverity.Critical)).length !== 0) {
                 return DeviationSeverity.Critical;
