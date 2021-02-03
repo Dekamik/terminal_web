@@ -1,3 +1,5 @@
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { Color } from '../Color';
 import { ModalCloseButton } from './ModalCloseButton';
@@ -28,7 +30,7 @@ export const SingleButtonModal: React.FunctionComponent<ISingleButtonModal> = (p
                         <button type="button" 
                             className={`btn btn-lg btn-${props.closeButtonColor || Color.Secondary}`} 
                             data-dismiss="modal">
-                            {props.closeButtonText || "Close"}
+                            <FontAwesomeIcon icon={faTimes} /> {props.closeButtonText || "Stäng"}
                         </button>
                     </div>
                 </div>
