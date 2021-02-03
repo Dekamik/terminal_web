@@ -31,14 +31,13 @@ const NavRoute = ({exact = false, path, component: Component}) => {
     <Route exact={exact} path={path} render={(props) => (
       <div className={`app bg-dark ${getLayout()}`}>
         <div className="row">
-          <div className="col-4">
-            <Clock />
-          </div>
           <div className="col-8">
             <Navbar />
           </div>
         </div>
-        <Component {...props} />
+        <div className="content">
+          <Component {...props} />
+        </div>
       </div>
     )}/>
   );

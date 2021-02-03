@@ -3,11 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 import { HOME, RSS_FEED, SETTINGS, SL_TRAVEL_PLANNER, STOCKS, TODO } from '../../routes/WebRoutes';
+import { Clock } from '../clock/Clock';
 
 export const Navbar: React.FunctionComponent = () => {
 
     return (
-        <nav className="navbar navbar-expand-sm navbar-dark bg-dark font-size-2">
+        <nav className="navbar fixed-top navbar-expand-sm navbar-dark bg-dark font-size-2">
+            <Clock />
             <button className="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>

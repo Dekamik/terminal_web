@@ -46,6 +46,10 @@
   justify-content: space-between;
 }
 
+.content {
+  padding-top: 12rem;
+}
+
 .font-size-1-25 {
   font-size: 1.25rem;
 }
@@ -138,7 +142,7 @@ button.btn.btn-magenta {
 
 .clock-date {
   font-family: Goldman;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 .clock-time {
@@ -146,7 +150,7 @@ button.btn.btn-magenta {
   z-index: 100;
   font-family: Digital-7;
   line-height: 0.7;
-  font-size: 8rem;
+  font-size: 5rem;
   color: #61dafb;
   text-shadow: 0 0 .75rem #61dafb;
 }
@@ -154,7 +158,7 @@ button.btn.btn-magenta {
 .clock-time-shadow {
   font-family: Digital-7;
   line-height: 0.7;
-  font-size: 8rem;
+  font-size: 5rem;
   color: rgba(97, 218, 251, .125);
   position: absolute;
   top: 0;
@@ -259,6 +263,10 @@ a:hover {
   width: 4.25rem;
   height: 4.25rem;
   text-align: center;
+}
+
+.navbar {
+  box-shadow: 0 2rem 1rem -6px #343a40;
 }
 
 button.btn.btn-dark {
