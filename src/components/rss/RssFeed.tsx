@@ -1,4 +1,3 @@
-import moment from 'moment';
 import * as React from 'react';
 import Parser from 'rss-parser';
 import { getDateStr, getTimeStr } from '../../helpers/DateHelper';
@@ -23,12 +22,14 @@ export const RssFeed: React.FunctionComponent<IRssFeed> = (props) => {
                 item: ['description']
             }
         });
+        
         parser.parseURL("http://localhost:8080/https://www.svd.se/?service=rss", (err, res) => {
             if (err) {
                 console.log(err);
             }
             else {
-                let items = res.items.map(item => ({
+                let items = res.items.map((item, i) => ({
+                    id: i,
                     title: item.title,
                     description: item.description,
                     date: capitalize(`${getDateStr(new Date(Date.parse(item.pubDate ?? "")))} kl. ${getTimeStr(new Date(Date.parse(item.pubDate ?? "")))}`),
@@ -55,8 +56,8 @@ export const RssFeed: React.FunctionComponent<IRssFeed> = (props) => {
                 <div className="col-8 mx-auto">
                     <Spinner isLoading={isLoading}>
                         {
-                            feed.map(item => 
-                                <RssFeedItem {...item} />
+                            feed.map((item, i) => 
+                                <RssFeedItem {...item} key={i} />
                             )
                         }
                     </Spinner>

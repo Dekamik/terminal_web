@@ -4,6 +4,7 @@ import DOMPurify from 'dompurify';
 import * as React from 'react';
 
 export interface IRssFeedItem {
+    id: number;
     title?: string;
     description?: string;
     date?: string;
@@ -14,14 +15,20 @@ export interface IRssFeedItem {
 
 export const RssFeedItem: React.FunctionComponent<IRssFeedItem> = (props) => {
 
+    const detailsId = `details${props.id}`;
+
     const sendLink = () => {
 
     }
 
     return (
         <>
-            <div className="card text-dark">
-                <div className="card-header">
+            <div key={props.id} className="card text-dark">
+                <div className="card-header"
+                    data-toggle="collapse"
+                    data-target={`#${detailsId}`}
+                    aria-expanded="false"
+                    aria-controls={detailsId}>
                     <div className="row align-middle">
                         <div className="col-10">
                             <h4>
@@ -33,14 +40,16 @@ export const RssFeedItem: React.FunctionComponent<IRssFeedItem> = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className="card-body">
-                    <p className="text-muted">{props.date}</p>
-                    <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(props.description) ?? ""}}>
+                <div id={detailsId} className="collapse">
+                    <div className="card-body">
+                        <p className="text-muted">{props.date}</p>
+                        <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(props.description) ?? ""}}>
 
+                        </div>
                     </div>
-                </div>
-                <div className="card-footer text-right">
-                    <button className="btn btn-info btn-lg" onClick={sendLink} ><FontAwesomeIcon icon={faSms} /> Skicka länk</button>
+                    <div className="card-footer text-right">
+                        <button className="btn btn-info btn-lg" onClick={sendLink} ><FontAwesomeIcon icon={faSms} /> Skicka länk</button>
+                    </div>
                 </div>
             </div>
             <hr/>
