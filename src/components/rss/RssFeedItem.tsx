@@ -32,9 +32,9 @@ export const RssFeedItem: React.FunctionComponent<IRssFeedItem> = (props) => {
                     aria-controls={detailsId}>
                     <div className="row">
                         <div className="col-10">
-                            <h4>
+                            <h5>
                                 {props.title}
-                            </h4>
+                            </h5>
                         </div>
                         <div className="col-2 text-right">
                             <img className="rss-thumbnail" src={props.feedImage} alt={props.feedImageAlt} />

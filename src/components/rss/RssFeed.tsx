@@ -1,3 +1,5 @@
+import { faSync } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import Parser from 'rss-parser';
 import { getDateStr, getTimeStr } from '../../helpers/DateHelper';
@@ -52,6 +54,9 @@ export const RssFeed: React.FunctionComponent<IRssFeed> = (props) => {
         <div className="col-12">
             <div className="row">
                 <h1 className="mx-auto">RSS-flöde</h1>
+            </div>
+            <div className="row">
+                <button className="btn btn-dark btn-lg mx-auto" onClick={fetchRss} ><FontAwesomeIcon icon={faSync}/> Uppdatera</button>
             </div>
             <hr/>
             <div className="row">
