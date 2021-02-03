@@ -36,45 +36,43 @@ export const SLDeviationsModalItem: React.FunctionComponent<ISLDeviationsModalIt
     }
 
     return (
-        <div className="col-12" id="accordion" key={props.key}>
-            <div className="card text-white custom-border-dark">
-                <div className={`card-header ${getSeverityClasses(props)} text-center sl-disruptions-header`} 
-                    id={`header${props.id}`} 
-                    data-toggle="collapse" 
-                    data-target={`#details${props.id}`} 
-                    aria-expanded="false" 
-                    aria-controls={`details${props.id}`}>
-                    <h5 className="mx-auto">
-                        {props.header}
-                    </h5>
-                    {
-                        !contains(props.header, props.lines)
-                            ? <span>
-                                {props.lines}
-                            </span>
-                            : null
-                    }
-                </div>
-                <div id={`details${props.id}`} className="collapse" aria-labelledby={`header${props.id}`} data-parent="#accordion">
-                    <div className="card-body bg-dark">
-                        <div className="row">
-                            <p>
-                                {props.details}
-                            </p>
-                        </div>
-                        <div className="row">
-                            <p>
-                                Detta påverkar {props.lines}
-                                {
-                                    isSameDate(props.dateFrom, props.dateTo) ? ` ${getDateStr(props.dateFrom)} mellan kl. ${moment(props.dateFrom).format("HH:mm")} och kl. ${moment(props.dateTo).format("HH:mm")}`
-                                        : isSameYear(props.dateFrom, props.dateTo) ? ` från ${getDateStr(props.dateFrom)} kl. ${getTimeStr(props.dateFrom)} till ${getDateStr(props.dateTo)} kl. ${getTimeStr(props.dateTo)}`
-                                        : ` från ${moment(props.dateFrom).format("YYYY-MM-DD HH:mm")} till ${moment(props.dateTo).format("YYYY-MM-DD HH:mm")}`
-                                }
-                            </p>
-                        </div>
+        <>
+            <div className={`card-header ${getSeverityClasses(props)} text-center sl-disruptions-header`} 
+                id={`header${props.id}`} 
+                data-toggle="collapse" 
+                data-target={`#details${props.id}`} 
+                aria-expanded="false" 
+                aria-controls={`details${props.id}`}>
+                <h5 className="mx-auto">
+                    {props.header}
+                </h5>
+                {
+                    !contains(props.header, props.lines)
+                        ? <span>
+                            {props.lines}
+                        </span>
+                        : null
+                }
+            </div>
+            <div id={`details${props.id}`} className="collapse" aria-labelledby={`header${props.id}`} data-parent="#accordion">
+                <div className="card-body bg-dark">
+                    <div className="row">
+                        <p>
+                            {props.details}
+                        </p>
+                    </div>
+                    <div className="row">
+                        <p>
+                            Detta påverkar {props.lines}
+                            {
+                                isSameDate(props.dateFrom, props.dateTo) ? ` ${getDateStr(props.dateFrom)} mellan kl. ${moment(props.dateFrom).format("HH:mm")} och kl. ${moment(props.dateTo).format("HH:mm")}`
+                                    : isSameYear(props.dateFrom, props.dateTo) ? ` från ${getDateStr(props.dateFrom)} kl. ${getTimeStr(props.dateFrom)} till ${getDateStr(props.dateTo)} kl. ${getTimeStr(props.dateTo)}`
+                                    : ` från ${moment(props.dateFrom).format("YYYY-MM-DD HH:mm")} till ${moment(props.dateTo).format("YYYY-MM-DD HH:mm")}`
+                            }
+                        </p>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
