@@ -4,10 +4,25 @@ import * as React from 'react';
 import DatePicker from 'react-datepicker';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import moment from 'moment';
+import { Data } from '../../api/TrafikLab/DefaultLineDataResponse';
+
+enum DepartOption {
+    Now,
+    DepartAt,
+    ArriveAt
+}
+
+interface IOption {
+    id: string,
+    label: string
+}
 
 export const SLTravelPlanner: React.FunctionComponent = () => {
 
+    const [selection, setSelection] = React.useState<IOption>();
+    const [options, setOptions] = React.useState<IOption[]>();
     const [dateTime, setDateTime] = React.useState<Date>(new Date());
+    const [departOption, setDepartOption] = React.useState<DepartOption>(DepartOption.Now);
 
     const datePicker = () => 
         <DatePicker className="form-control"
@@ -18,6 +33,14 @@ export const SLTravelPlanner: React.FunctionComponent = () => {
             showWeekNumbers
             value={moment(dateTime).format("YYYY-MM-DD HH:mm")}
             onChange={date => date && date instanceof Date && setDateTime(date)} />
+    
+    const getOptions = () => Data.ResponseData.Result
+        .map(item => ({id: item.SiteId, label: item.SiteName}))
+        .filter((value, index, self) => self.map(x => x.id).indexOf(value.id) == index);
+
+    React.useEffect(() => {
+        setOptions(getOptions());
+    }, []);
 
     return (
         <div className="col-8 mx-auto">
@@ -29,10 +52,12 @@ export const SLTravelPlanner: React.FunctionComponent = () => {
                 <div className="row">
                     <div className="col mx-auto">
                         <Typeahead 
-                            options={["a", "b", "c"]} 
+                            clearButton
+                            options={options ?? []} 
                             placeholder="Ange destination..."
                             size="large"
                             minLength={3}
+                            onInputChange={text => setSelection(options?.filter(value => value.label === text)[0])}
                         />
                     </div>
                 </div>
@@ -53,19 +78,20 @@ export const SLTravelPlanner: React.FunctionComponent = () => {
                     </div>
                     <div className="col-5">
                         <div className="tab-content" id="depart-tab-content">
-                            <div className="tab-pane fade show active" id="depart-now" role="tabpanel" aria-labelledby="depart-now-tab"></div>
-                            <div className="tab-pane fade" id="depart-at" role="tabpanel" aria-labelledby="depart-at-tab">
+                            <div className="tab-pane fade show active" id="depart-now" role="tabpanel" aria-labelledby="depart-now-tab" onClick={() => setDepartOption(DepartOption.Now)}></div>
+                            <div className="tab-pane fade" id="depart-at" role="tabpanel" aria-labelledby="depart-at-tab" onClick={() => setDepartOption(DepartOption.DepartAt)}>
                                 {datePicker()}
                             </div>
-                            <div className="tab-pane fade" id="arrive-at" role="tabpanel" aria-labelledby="arrive-at-tab">
+                            <div className="tab-pane fade" id="arrive-at" role="tabpanel" aria-labelledby="arrive-at-tab" onClick={() => setDepartOption(DepartOption.ArriveAt)}>
                                 {datePicker()}
                             </div>
                         </div>
                     </div>
                 </div>
+                <hr/>
                 <div className="row">
                     <div className="col-4 mx-auto">
-                        <button className="btn btn-info btn-lg btn-block"><FontAwesomeIcon icon={faSearch} /> Sök</button>
+                        <button className="btn btn-info btn-lg btn-block"><FontAwesomeIcon icon={faSearch} onClick={() => true} /> Sök</button>
                     </div>
                 </div>
             </form>

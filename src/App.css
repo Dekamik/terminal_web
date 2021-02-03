@@ -245,13 +245,13 @@ a:hover {
   color: #9f599a;
 }
 
-.nav-pills .nav-link {
+/*.nav-pills .nav-link {
   border-top-left-radius: .25rem;
   border-top-right-radius: .25rem;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   border: #454d55 1px solid;
-}
+}*/
 
 .nav-pills .nav-link.active {
   background-color: #17a2b8;
