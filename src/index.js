@@ -7,6 +7,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { registerLocale } from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import sv from "date-fns/locale/sv";
+
+registerLocale("sv", sv);
+
 const store = createStore(rootReducer);
 
 ReactDOM.render(

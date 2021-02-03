@@ -238,7 +238,7 @@ table {
 }
 
 a {
-  color: #ff6edd;
+  color: #17a2b8;
 }
 
 a:hover {
@@ -254,7 +254,7 @@ a:hover {
 }
 
 .nav-pills .nav-link.active {
-  background-color: #ff6edd;
+  background-color: #17a2b8;
 }
 
 .navbar-dark .navbar-nav .nav-link {
