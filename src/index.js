@@ -10,6 +10,7 @@ import reportWebVitals from './reportWebVitals';
 import { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import sv from "date-fns/locale/sv";
+import 'react-bootstrap-typeahead/css/Typeahead.css'
 
 registerLocale("sv", sv);
 

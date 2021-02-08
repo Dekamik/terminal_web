@@ -68,7 +68,7 @@ export const SLTravelPlanner: React.FunctionComponent = () => {
             </div>
             <Spinner isLoading={loadingOptions}>
                 <div className="row">
-                    <div className="col mx-auto">
+                    <div className="col">
                         <Typeahead 
                             id="departureStop"
                             clearButton
@@ -84,7 +84,7 @@ export const SLTravelPlanner: React.FunctionComponent = () => {
                 </div>
                 <hr/>
                 <div className="row">
-                    <div className="col mx-auto">
+                    <div className="col">
                         <Typeahead 
                             id="destinationStop"
                             clearButton
