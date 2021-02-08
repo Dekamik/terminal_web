@@ -5,6 +5,7 @@ import DatePicker from 'react-datepicker';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import moment from 'moment';
 import { Data } from '../../api/TrafikLab/DefaultLineDataResponse';
+import { Spinner } from '../common/Spinner';
 
 enum DepartOption {
     Now,
@@ -19,6 +20,7 @@ interface IOption {
 
 export const SLTravelPlanner: React.FunctionComponent = () => {
 
+    const [loadingOptions, setLoadingOptions] = React.useState<boolean>(true);
     const [selection, setSelection] = React.useState<IOption>();
     const [options, setOptions] = React.useState<IOption[]>();
     const [dateTime, setDateTime] = React.useState<Date>(new Date());
@@ -36,19 +38,21 @@ export const SLTravelPlanner: React.FunctionComponent = () => {
     
     const getOptions = () => Data.ResponseData.Result
         .map(item => ({id: item.SiteId, label: item.SiteName}))
-        .filter((value, index, self) => self.map(x => x.id).indexOf(value.id) == index);
+        .filter((value, index, self) => self.map(x => x.id).indexOf(value.id) === index);
 
     React.useEffect(() => {
+        setLoadingOptions(true);
         setOptions(getOptions());
+        setLoadingOptions(false);
     }, []);
 
     return (
         <div className="col-8 mx-auto">
             <h1 className="text-center">SL Reseplanerare</h1>
-            <form>
-                <div className="row">
-                    <hr/>
-                </div>
+            <div className="row">
+                <hr/>
+            </div>
+            <Spinner isLoading={loadingOptions}>
                 <div className="row">
                     <div className="col mx-auto">
                         <Typeahead 
@@ -94,7 +98,7 @@ export const SLTravelPlanner: React.FunctionComponent = () => {
                         <button className="btn btn-info btn-lg btn-block"><FontAwesomeIcon icon={faSearch} onClick={() => true} /> Sök</button>
                     </div>
                 </div>
-            </form>
+            </Spinner>
         </div>
     );
 }
