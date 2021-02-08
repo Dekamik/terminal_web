@@ -6,6 +6,7 @@ import { Typeahead } from 'react-bootstrap-typeahead';
 import moment from 'moment';
 import { Data } from '../../api/TrafikLab/DefaultLineDataResponse';
 import { Spinner } from '../common/Spinner';
+import { contains } from '../../helpers/StringHelper';
 
 enum DepartOption {
     Now,
@@ -23,12 +24,14 @@ export const SLTravelPlanner: React.FunctionComponent = () => {
     const [loadingOptions, setLoadingOptions] = React.useState<boolean>(true);
     const [options, setOptions] = React.useState<IOption[]>();
 
-    const [selectedDepartureStop, setSelectedDepartureStop] = React.useState<IOption[]>();
-    const [selectedDestinationStop, setSelectedDestinationStop] = React.useState<IOption[]>();
+    const [selectedDepartureStop, setSelectedDepartureStop] = React.useState<IOption[]>([]);
+    const [selectedDestinationStop, setSelectedDestinationStop] = React.useState<IOption[]>([]);
     const [departOption, setDepartOption] = React.useState<DepartOption>(DepartOption.Now);
     const [dateTime, setDateTime] = React.useState<Date>(new Date());
 
-    const getDefaultStop = () => options?.filter(value => value.id === "3522");
+    const [loadingResults, setLoadingResults] = React.useState<boolean>(false);
+
+    const getDefaultStop = () => options?.filter(value => contains(value.label, "Ursviks holme"))[0];
 
     const datePicker = () => 
         <DatePicker className="form-control"
@@ -51,11 +54,13 @@ export const SLTravelPlanner: React.FunctionComponent = () => {
     }, []);
 
     const searchDepartures = () => {
-        if (selectedDepartureStop === undefined) {
-            setSelectedDepartureStop(getDefaultStop());
+        let departurePoint = selectedDepartureStop[0];
+        let destinationPoint = selectedDestinationStop[0];
+        if (selectedDepartureStop === undefined || selectedDepartureStop.length === 0) {
+            departurePoint = getDefaultStop() || {id: "-1", label: "Avgångshållplats ej satt"};
         }
-        console.log("selectedDeparture", selectedDepartureStop && selectedDepartureStop[0]);
-        console.log("selectedDestination", selectedDestinationStop && selectedDestinationStop[0]);
+        console.log("departurePoint", departurePoint);
+        console.log("destinationPoint", destinationPoint);
         console.log("departOption", departOption);
         console.log("dateTime", dateTime);
     }
@@ -73,12 +78,11 @@ export const SLTravelPlanner: React.FunctionComponent = () => {
                             id="departureStop"
                             clearButton
                             options={options ?? []} 
-                            placeholder="Ange utgångspunkt..."
+                            placeholder={getDefaultStop()?.label || "Ange utgångspunkt..."}
                             size="large"
                             minLength={3}
                             selected={selectedDepartureStop}
                             onChange={setSelectedDepartureStop}
-                            defaultSelected={getDefaultStop()}
                         />
                     </div>
                 </div>
@@ -130,6 +134,12 @@ export const SLTravelPlanner: React.FunctionComponent = () => {
                         <button className="btn btn-info btn-lg btn-block" onClick={() => searchDepartures()} ><FontAwesomeIcon icon={faSearch} /> Sök</button>
                     </div>
                 </div>
+            </Spinner>
+            <div className="row">
+                <hr/>
+            </div>
+            <Spinner isLoading={loadingResults}>
+                
             </Spinner>
         </div>
     );
