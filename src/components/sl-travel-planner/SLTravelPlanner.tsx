@@ -6,6 +6,7 @@ import { Typeahead } from 'react-bootstrap-typeahead';
 import moment from 'moment';
 import { Data } from '../../api/TrafikLab/DefaultLineDataResponse';
 import { Spinner } from '../common/Spinner';
+import { contains } from '../../helpers/StringHelper';
 
 enum DepartOption {
     Now,
@@ -21,10 +22,12 @@ interface IOption {
 export const SLTravelPlanner: React.FunctionComponent = () => {
 
     const [loadingOptions, setLoadingOptions] = React.useState<boolean>(true);
-    const [selection, setSelection] = React.useState<IOption>();
     const [options, setOptions] = React.useState<IOption[]>();
-    const [dateTime, setDateTime] = React.useState<Date>(new Date());
+
+    const [selectedDeparture, setSelectedDeparture] = React.useState<IOption[]>();
+    const [selectedDestination, setSelectedDestination] = React.useState<IOption[]>();
     const [departOption, setDepartOption] = React.useState<DepartOption>(DepartOption.Now);
+    const [dateTime, setDateTime] = React.useState<Date>(new Date());
 
     const datePicker = () => 
         <DatePicker className="form-control"
@@ -37,7 +40,7 @@ export const SLTravelPlanner: React.FunctionComponent = () => {
             onChange={date => date && date instanceof Date && setDateTime(date)} />
     
     const getOptions = () => Data.ResponseData.Result
-        .map(item => ({id: item.SiteId, label: item.SiteName}))
+        .map(item => ({id: item.SiteId, label: `${item.SiteName} [${item.SiteId}]`}))
         .filter((value, index, self) => self.map(x => x.id).indexOf(value.id) === index);
 
     React.useEffect(() => {
@@ -45,6 +48,13 @@ export const SLTravelPlanner: React.FunctionComponent = () => {
         setOptions(getOptions());
         setLoadingOptions(false);
     }, []);
+
+    const searchDepartures = () => {
+        console.log("selectedDeparture", selectedDeparture && selectedDeparture[0]);
+        console.log("selectedDestination", selectedDestination && selectedDestination[0]);
+        console.log("departOption", departOption);
+        console.log("dateTime", dateTime);
+    }
 
     return (
         <div className="col-8 mx-auto">
@@ -56,12 +66,30 @@ export const SLTravelPlanner: React.FunctionComponent = () => {
                 <div className="row">
                     <div className="col mx-auto">
                         <Typeahead 
+                            id="departure"
+                            clearButton
+                            options={options ?? []} 
+                            placeholder="Ange utgångspunkt..."
+                            size="large"
+                            minLength={3}
+                            selected={selectedDeparture}
+                            onChange={setSelectedDeparture}
+                            defaultSelected={options?.filter(value => value.id === "3522")}
+                        />
+                    </div>
+                </div>
+                <hr/>
+                <div className="row">
+                    <div className="col mx-auto">
+                        <Typeahead 
+                            id="destination"
                             clearButton
                             options={options ?? []} 
                             placeholder="Ange destination..."
                             size="large"
                             minLength={3}
-                            onInputChange={text => setSelection(options?.filter(value => value.label === text)[0])}
+                            selected={selectedDestination}
+                            onChange={setSelectedDestination}
                         />
                     </div>
                 </div>
@@ -95,7 +123,7 @@ export const SLTravelPlanner: React.FunctionComponent = () => {
                 <hr/>
                 <div className="row">
                     <div className="col-4 mx-auto">
-                        <button className="btn btn-info btn-lg btn-block"><FontAwesomeIcon icon={faSearch} onClick={() => true} /> Sök</button>
+                        <button className="btn btn-info btn-lg btn-block" onClick={() => searchDepartures()} ><FontAwesomeIcon icon={faSearch} /> Sök</button>
                     </div>
                 </div>
             </Spinner>
