@@ -6,7 +6,6 @@ import { Typeahead } from 'react-bootstrap-typeahead';
 import moment from 'moment';
 import { Data } from '../../api/TrafikLab/DefaultLineDataResponse';
 import { Spinner } from '../common/Spinner';
-import { contains } from '../../helpers/StringHelper';
 
 enum DepartOption {
     Now,
@@ -24,10 +23,12 @@ export const SLTravelPlanner: React.FunctionComponent = () => {
     const [loadingOptions, setLoadingOptions] = React.useState<boolean>(true);
     const [options, setOptions] = React.useState<IOption[]>();
 
-    const [selectedDeparture, setSelectedDeparture] = React.useState<IOption[]>();
-    const [selectedDestination, setSelectedDestination] = React.useState<IOption[]>();
+    const [selectedDepartureStop, setSelectedDepartureStop] = React.useState<IOption[]>();
+    const [selectedDestinationStop, setSelectedDestinationStop] = React.useState<IOption[]>();
     const [departOption, setDepartOption] = React.useState<DepartOption>(DepartOption.Now);
     const [dateTime, setDateTime] = React.useState<Date>(new Date());
+
+    const getDefaultStop = () => options?.filter(value => value.id === "3522");
 
     const datePicker = () => 
         <DatePicker className="form-control"
@@ -50,8 +51,11 @@ export const SLTravelPlanner: React.FunctionComponent = () => {
     }, []);
 
     const searchDepartures = () => {
-        console.log("selectedDeparture", selectedDeparture && selectedDeparture[0]);
-        console.log("selectedDestination", selectedDestination && selectedDestination[0]);
+        if (selectedDepartureStop === undefined) {
+            setSelectedDepartureStop(getDefaultStop());
+        }
+        console.log("selectedDeparture", selectedDepartureStop && selectedDepartureStop[0]);
+        console.log("selectedDestination", selectedDestinationStop && selectedDestinationStop[0]);
         console.log("departOption", departOption);
         console.log("dateTime", dateTime);
     }
@@ -66,15 +70,15 @@ export const SLTravelPlanner: React.FunctionComponent = () => {
                 <div className="row">
                     <div className="col mx-auto">
                         <Typeahead 
-                            id="departure"
+                            id="departureStop"
                             clearButton
                             options={options ?? []} 
                             placeholder="Ange utgångspunkt..."
                             size="large"
                             minLength={3}
-                            selected={selectedDeparture}
-                            onChange={setSelectedDeparture}
-                            defaultSelected={options?.filter(value => value.id === "3522")}
+                            selected={selectedDepartureStop}
+                            onChange={setSelectedDepartureStop}
+                            defaultSelected={getDefaultStop()}
                         />
                     </div>
                 </div>
@@ -82,14 +86,14 @@ export const SLTravelPlanner: React.FunctionComponent = () => {
                 <div className="row">
                     <div className="col mx-auto">
                         <Typeahead 
-                            id="destination"
+                            id="destinationStop"
                             clearButton
                             options={options ?? []} 
                             placeholder="Ange destination..."
                             size="large"
                             minLength={3}
-                            selected={selectedDestination}
-                            onChange={setSelectedDestination}
+                            selected={selectedDestinationStop}
+                            onChange={setSelectedDestinationStop}
                         />
                     </div>
                 </div>
