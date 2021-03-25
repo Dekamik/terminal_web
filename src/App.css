@@ -82,13 +82,13 @@
 
 .weather-summary > .weather-icon {
   position: absolute;
-  top: 1.25rem;
+  top: -1rem;
   right: 0;
   left: 0;
   bottom: 0;
   margin: 0 auto;
-  height: 50%;
-  width: 50%;
+  height: 60%;
+  width: 60%;
   z-index: 0;
 }
 
@@ -190,7 +190,7 @@ button.btn.btn-magenta {
 .sl-next-departures > table > tbody > tr:first-of-type {
   font-weight: bold;
   box-shadow: none;
-  background-color: #17a2b8;
+  background-color: #ffffff21;
 }
 
 .sl-next-departures > table > tbody > tr.imminent {
@@ -213,7 +213,7 @@ button.btn.btn-magenta {
 }
 
 .sl-next-departures > .table {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 
 table {

@@ -18,7 +18,7 @@ export const Clock: React.FunctionComponent = () => {
     const [time, setTime] = React.useState<string>("...");
     const [flagDay, setFlagDay] = React.useState<string>("");
     const [isRedDay, setIsRedDay] = React.useState<boolean>(false);
-    const [nameDays, setNameDays] = React.useState<string[]>([]);
+    //const [nameDays, setNameDays] = React.useState<string[]>([]);
 
     const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
@@ -39,7 +39,7 @@ export const Clock: React.FunctionComponent = () => {
                 let day = response.dagar.filter(item => item.datum === currentDateStr)[0];
                 setFlagDay(day.flaggdag);
                 setIsRedDay(day["röd dag"] === "Ja");
-                setNameDays(day.namnsdag);
+                //setNameDays(day.namnsdag);
 
                 dispatch({type: UPDATE_CALENDAR, payload: {calendar: response.dagar}});
             },
