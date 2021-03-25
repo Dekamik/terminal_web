@@ -81,9 +81,25 @@
 }
 
 .weather-summary > .weather-icon {
+  position: absolute;
+  top: 1.25rem;
+  right: 0;
+  left: 0;
+  bottom: 0;
   margin: 0 auto;
-  height: 40%;
-  width: 45%;
+  height: 50%;
+  width: 50%;
+  z-index: 0;
+}
+
+.weather-summary > .weather-data {
+  position: relative;
+  z-index: 100;
+  filter: 
+    drop-shadow(-1px -1px 0 rgba(0, 0, 0, 1))
+    drop-shadow(-1px 1px 0 rgba(0, 0, 0, 1))
+    drop-shadow(1px -1px 0 rgba(0, 0, 0, 1))
+    drop-shadow(1px 1px 0 rgba(0, 0, 0, 1));
 }
 
 .weather-summary > .weather-icon > svg {

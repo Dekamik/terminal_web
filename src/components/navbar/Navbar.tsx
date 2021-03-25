@@ -1,8 +1,8 @@
-import { faBusAlt, faChartLine, faCog, faHome, faRss, faTasks } from '@fortawesome/free-solid-svg-icons';
+import { faCog, faHome, faRss } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
-import { HOME, RSS_FEED, SETTINGS, SL_TRAVEL_PLANNER, STOCKS, TODO } from '../../routes/WebRoutes';
+import { HOME, RSS_FEED, SETTINGS } from '../../routes/WebRoutes';
 import { Clock } from '../clock/Clock';
 
 export const Navbar: React.FunctionComponent = () => {
@@ -17,13 +17,6 @@ export const Navbar: React.FunctionComponent = () => {
                 <div className="navbar-nav ml-auto">
                     <NavLink exact to={HOME} className="nav-item nav-link ml-4" activeClassName="active" ><FontAwesomeIcon icon={faHome} /></NavLink>
                     <NavLink to={RSS_FEED} className="nav-item nav-link ml-4" activeClassName="active"><FontAwesomeIcon icon={faRss} /></NavLink>
-                    <NavLink to={SL_TRAVEL_PLANNER} className="nav-item nav-link ml-4" activeClassName="active" ><FontAwesomeIcon icon={faBusAlt} /></NavLink>
-                    {
-                        /*
-                        <NavLink to={TODO} className="nav-item nav-link ml-4" activeClassName="active" ><FontAwesomeIcon icon={faTasks} /></NavLink>
-                        <NavLink to={STOCKS} className="nav-item nav-link ml-4" activeClassName="active"><FontAwesomeIcon icon={faChartLine} /></NavLink>
-                        */
-                    }
                     <NavLink to={SETTINGS} className="nav-item nav-link ml-4" activeClassName="active" ><FontAwesomeIcon icon={faCog} /></NavLink>
                 </div>
             </div>

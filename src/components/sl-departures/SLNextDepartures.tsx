@@ -96,7 +96,7 @@ export const SLNextDepartures: React.FunctionComponent = () => {
     const getDeviations = React.useCallback(() => {
         const determineSeverity = (item: IDeviations) => 
             item.MainNews || contains(item.Header, 'stopp') ? DeviationSeverity.Critical 
-            : contains(item.Header, 'försen') || contains(item.Header, 'fel') ? DeviationSeverity.Warning
+            : contains(item.Header, 'försen') ? DeviationSeverity.Warning
             : DeviationSeverity.Info;
 
         if (deviationsLines && deviationsModes) {
@@ -184,7 +184,7 @@ export const SLNextDepartures: React.FunctionComponent = () => {
                         homeStation ? `SL - ${homeStation}` : "Station saknas"
                     }
                 </h2>
-                <table className="table table-dark table-borderless">
+                <table className="table table-dark table-borderless table-sm">
                     <tbody>
                         {
                             departures && departures.length 
