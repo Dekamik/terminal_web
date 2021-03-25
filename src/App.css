@@ -76,8 +76,8 @@
   padding-top: 2rem;
   padding-bottom: 2rem;
   font-size: 4rem;
-  border: #454d55 2px solid;
-  border-radius: .25rem;
+  /*border: #454d55 2px solid;
+  border-radius: .25rem;*/
 }
 
 .weather-summary > .weather-icon {
@@ -221,17 +221,17 @@ table {
   border-spacing: 0px;
 }
 
-.sl-deviations-row td {
+/*.sl-deviations-row td {
   border: #454d55 3px solid;
-}
+}*/
 
 .sl-deviations-row td:first-child {
-  border-radius: .25rem 0 0 .25rem;
+  /*border-radius: .25rem 0 0 .25rem;*/
   border-right-style: none;
 }
 
 .sl-deviations-row td:last-child {
-  border-radius: 0 .25rem .25rem 0;
+  /*border-radius: 0 .25rem .25rem 0;*/
   border-left-style: none;
 }
 
@@ -274,8 +274,8 @@ a:hover {
 }
 
 .navbar-dark .navbar-nav .nav-link {
-  border: #454d55 2px solid;
-  border-radius: .25rem;
+  /*border: #454d55 2px solid;
+  border-radius: .25rem;*/
   width: 4.25rem;
   height: 4.25rem;
   text-align: center;
@@ -286,8 +286,8 @@ a:hover {
 }
 
 button.btn.btn-dark {
-  border: #454d55 3px solid;
-  border-radius: .25rem;
+  /*border: #454d55 3px solid;
+  border-radius: .25rem;*/
 }
 
 .rss-thumbnail {
