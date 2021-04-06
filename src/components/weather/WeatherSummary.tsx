@@ -142,16 +142,18 @@ export const WeatherSummary: React.FunctionComponent<IWeatherSummary> = (props) 
             <div className="weather-summary"
                 data-toggle="modal"
                 data-target={`#${toCamelCase(props.name)}WeatherModal`}>
-                <h1>
-                    {props.name}
-                </h1>
-                <Temperature temperature={temperature} />
                 <div className="weather-icon">
                 {
                     weatherCode 
                         ? <img className="filter-white" src={"/images/weathericons/" + weatherCode + ".svg"} alt={weatherCode} />
                         : <FontAwesomeIcon icon={faExclamationTriangle} className="text-warning"/>
                 }
+                </div>
+                <div className="weather-data">
+                    <h1>
+                        {props.name}
+                    </h1>
+                    <Temperature temperature={temperature} />
                 </div>
             </div>
             <WeatherModal id={`${toCamelCase(props.name)}WeatherModal`}

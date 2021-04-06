@@ -6,6 +6,9 @@ import { BrowserRouter, Route, Switch, useLocation } from 'react-router-dom'
 import { Navbar } from './components/navbar/Navbar';
 import { HOME, SETTINGS, RSS_FEED, HEALTH_CHECKS } from './routes/WebRoutes';
 import { Settings } from './components/settings/Settings';
+import { SLTravelPlanner } from './components/sl-travel-planner/SLTravelPlanner';
+import { Todo } from './components/todo/Todo';
+import { DStonks } from './components/dstonks/DStonks';
 import { RssFeed } from './components/rss/RssFeed';
 import { HealthChecks } from './components/health-checks/HealthChecks';
 
