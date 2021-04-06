@@ -4,12 +4,10 @@ import './App.css';
 import { Home } from './components/Home';
 import { BrowserRouter, Route, Switch, useLocation } from 'react-router-dom'
 import { Navbar } from './components/navbar/Navbar';
-import { SL_TRAVEL_PLANNER, HOME, SETTINGS, TODO, STOCKS, RSS_FEED } from './routes/WebRoutes';
+import { HOME, SETTINGS, RSS_FEED, HEALTH_CHECKS } from './routes/WebRoutes';
 import { Settings } from './components/settings/Settings';
-import { SLTravelPlanner } from './components/sl-travel-planner/SLTravelPlanner';
-import { Todo } from './components/todo/Todo';
-import { DStonks } from './components/dstonks/DStonks';
 import { RssFeed } from './components/rss/RssFeed';
+import { HealthChecks } from './components/health-checks/HealthChecks';
 
 const NavRoute = ({exact = false, path, component: Component}) => {
 
@@ -49,9 +47,7 @@ export default class App extends React.Component {
         <Switch>
           <NavRoute exact path={HOME} component={Home} />
           <NavRoute path={RSS_FEED} component={RssFeed} />
-          <NavRoute path={SL_TRAVEL_PLANNER} component={SLTravelPlanner} />
-          <NavRoute path={TODO} component={Todo} />
-          <NavRoute path={STOCKS} component={DStonks} />
+          <NavRoute path={HEALTH_CHECKS} component={HealthChecks} />
           <NavRoute path={SETTINGS} component={Settings} />
         </Switch>
       </BrowserRouter>
